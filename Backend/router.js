@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const user = require('./models/user');
 const location = require('./models/location')
+const hotel = require('./models/hotel')
+const menu = require('./models/menu')
 const token_model = require('./models/token_model')
 const bcrypt = require('bcrypt')
 const cors = require('cors');
@@ -99,5 +101,19 @@ router.delete('/logout', passport.authenticate('refreshtoken', { session: false 
     
     res.send("Logged out successfully!")
 })
+
+
+router.get('/hotel', async(req,res)=>{
+   const hotelData =  await hotel.findAll()
+   res.send(hotelData)
+})
+
+router.get('/menu/:id',async(req,res)=>{
+    
+    const menuData = await menu.findAll({where:{hotelId:req.params.id}})
+    res.send(menuData)
+})
+ 
+
 
 module.exports = router

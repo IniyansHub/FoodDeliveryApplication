@@ -5,8 +5,7 @@ const hotel = db.define('hotels',{
     hotelId:{
         type:DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true,
-        field: 'hotelId'
+        primaryKey: true
     },
     hotelName:{
         type:DataTypes.STRING
