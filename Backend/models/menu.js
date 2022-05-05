@@ -5,7 +5,8 @@ const menu = db.define('menus',{
     menu_id:{
         type:DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+        field: 'menu_id'
     },
     hotelId:{
         type:DataTypes.INTEGER
