@@ -52,6 +52,7 @@ router.post('/login', async (req, res) => {
             if (!isValid) {
                 res.send("User not found!")
             } else {
+                
                 const access_token = jwtTokenGenerator.genAccessToken(userFound.id);
 
                 const refresh_token = jwtTokenGenerator.genRefreshToken(userFound.id);
