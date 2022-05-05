@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap:wght@500&family=Montserrat:wght@500&family=Ms+Madi&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.brand{
+    font-weight: large;
+    font-family: 'Montserrat', sans-serif;
+    color: orange;
+}
+
+li,a{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size:0.8em;
+    color: white;
+    text-decoration: none;
+    list-style: none;
+    display: inline-block;
+    padding: 0px 20px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+
+}
+
+.navbar{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 20% 40% 40%;
+    padding: 1em 2%;
+    background-color:rgb(0, 0, 0);
+    position: fixed;
+}
+
+.center-links{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.center-links li:hover{
+    color: orange;
+}
+
+.auth-links{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.auth-links>button{
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8em;
+    padding: 0px 20px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 5px;
+    background-color: black;
+}
+
+.auth-links>button:hover{
+    background-color: rgb(245, 183, 48);
+    color: white;
+    cursor: pointer;
+}
