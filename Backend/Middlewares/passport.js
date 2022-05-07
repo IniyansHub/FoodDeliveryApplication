@@ -19,7 +19,7 @@ passport.use('accesstoken',new JWTStrategy({
     }
 ))
 
-passport.use('refreshtoken',new JWTStrategy({
+passport.use('refreshtoken', new JWTStrategy({
     jwtFromRequest : ExtractJWT.fromAuthHeaderAsBearerToken(),
     secretOrKey : process.env.REFRESH_TOKEN_SECRET
 },async (jwtPayload,done)=>{

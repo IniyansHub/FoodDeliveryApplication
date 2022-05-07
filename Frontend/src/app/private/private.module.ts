@@ -12,6 +12,9 @@ import { PrivateComponent } from './private.component';
   imports: [
     CommonModule,
     PrivateRoutingModule
+  ],
+  exports: [
+    PrivateComponent
   ]
 })
 export class PrivateModule { }

@@ -7,7 +7,7 @@ genAccessToken = userId =>{
         sub:userId,
         iat:Math.floor(Date.now()/1000),
     },process.env.ACCESS_TOKEN_SECRET,{
-        expiresIn:'20s'
+        expiresIn:'5s'
     });
 
 }
@@ -18,7 +18,7 @@ genRefreshToken = userId =>{
         sub:userId,
         iat:Math.floor(Date.now()/1000),
     },process.env.REFRESH_TOKEN_SECRET,{
-        expiresIn:'1m'
+        expiresIn:'5m'
     });
 }
 

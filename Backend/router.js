@@ -13,7 +13,7 @@ require('./Middlewares/passport');
 router.use(express.json())
 router.use(cors())
 
-router.get('/token', passport.authenticate('refreshtoken', { session: false }), async (req, res) => {
+router.post('/token', passport.authenticate('refreshtoken', { session: false }), async (req, res) => {
 
     refreshTokenFromHeader = req.headers.authorization.split(' ')[1];
 
@@ -21,9 +21,9 @@ router.get('/token', passport.authenticate('refreshtoken', { session: false }), 
 
     if (isTokenExist) {
         const access_token = jwtTokenGenerator.genAccessToken(req.user.sub)
-        res.send({ access_token: access_token })
+        res.status(201).json({ access_token: access_token })
     } else {
-        res.status(404).send("Token not found!")
+        res.status(404).json({"message":"Token not found!"})
     }
 })
 
@@ -31,14 +31,16 @@ router.post('/signup', async (req, res) => {
 
     const { username, password } = req.body;
 
+    if(username == undefined || password == undefined) return res.status(400).json({"message":"Invalid username and password"})
+
     const isUserExist = (await user.findOne({ where: { username: username } })) ? true : false;
 
     if (isUserExist) {
-        res.send("User with this email exists already!");
+        return res.status(409).json({ "message": "User with this email exists already!" });
     } else {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const createdUser = await user.create({ username: username, password: hashedPassword });
-        res.send("User created with ID:" + createdUser.id);
+        await user.create({ username: username, password: hashedPassword }); 
+        return res.status(201).json({ message: "Registered Successfully"});
     }
 })
 
@@ -52,7 +54,7 @@ router.post('/login', async (req, res) => {
     if (userFound != null) {
         bcrypt.compare(password, userFound.password).then(isValid => {
             if (!isValid) {
-                res.send("User not found!")
+                return res.status(404).json({"message":"User not found!"})
             } else {
                 
                 const access_token = jwtTokenGenerator.genAccessToken(userFound.id);
@@ -66,7 +68,7 @@ router.post('/login', async (req, res) => {
                         } else {
                             token_model.update({ refreshToken: refresh_token }, { where: { userId: userFound.id } })
                                 .then(msg => {
-                                    console.log(msg)
+                                    //console.log(msg)
                                 })
                                 .catch(err => {
                                     console.log(err)
@@ -74,7 +76,7 @@ router.post('/login', async (req, res) => {
                         }
                     })
 
-                res.status(200).send({ access_token: access_token, refresh_token: refresh_token })
+                return res.status(200).send({ access_token: access_token, refresh_token: refresh_token })
 
             }
         })
@@ -83,35 +85,34 @@ router.post('/login', async (req, res) => {
 
 router.post('/addlocation', passport.authenticate('accesstoken', { session: false }), async (req, res) => {
     const addedLocation = await location.create({ userId: req.user.sub, location: req.body.location })
-    res.send("Location addedd successfully" + addedLocation);
+    res.status(201).json({"message": "Location addedd successfully" + addedLocation });
 })
 
 
 router.get('/getlocation', passport.authenticate('accesstoken', { session: false }), async (req, res) => {
     const locations = await location.findAll({ where: { userId: req.user.sub } })
-    res.json(locations)
+    res.status(200).send(locations)
 })
 
 router.delete('/logout', passport.authenticate('refreshtoken', { session: false }), async (req, res) => {
     
     token_model.destroy({
         where: { userId: req.user.sub },
-        truncate: true
+        truncate: true 
     })
     
-    res.send("Logged out successfully!")
+    res.status(200).json({"message":"Logged out successfully!"})
 })
 
 
 router.get('/hotel', async(req,res)=>{
    const hotelData =  await hotel.findAll()
-   res.send(hotelData)
+    res.status(200).json({ "hotels": "" + hotelData})
 })
 
 router.get('/menu/:id',async(req,res)=>{
-    
     const menuData = await menu.findAll({where:{hotelId:req.params.id}})
-    res.send(menuData)
+    res.status(200).json({ "menus": "" + menuData})
 })
  
 
