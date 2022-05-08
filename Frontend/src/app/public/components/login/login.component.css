@@ -2,27 +2,64 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10%;
+    margin-top: 5%;
+    height: 50%;
 }
 
-/* .login-label{
+.form{
+    width: 25%;
+    height: 50%;
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.432);
+    color: rgb(255, 255, 255);
+    display: grid;
+    grid-template-rows: auto auto auto;
+    row-gap:30px;
+    padding: 15px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.form-field{
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+
+.login-button-field{
     display: flex;
     justify-content: center;
-    align-items: center;
+}
+
+.login-button-field button  {
+    width:100%;
+    border: none;
+    outline: none;
+    background-color: orange;
     color: white;
-    padding: 5px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    font-weight: bold;
+    border-radius: 3px;
+    margin-top: 20px;
+    padding: 8px;
 }
 
-form{
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #b7cef0;
-    background-color:#b7cef0 ;
+.form-input{
+    border: none;
+    outline: none;
+    border-bottom:1px solid ;
+    padding-top: 10px;
 }
 
-input{
-    
-} */
+.form-input:focus{
+    border-bottom: 2px solid orange;
+}
+
+.already-a-user{
+    text-align: center;
+}
+
+.already-a-user>span>a{
+    text-decoration: none;
+    color: white;
+}
+
+

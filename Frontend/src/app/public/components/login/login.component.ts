@@ -40,13 +40,13 @@ export class LoginComponent implements OnInit {
         this.tokenService.saveRefreshToken(res.refresh_token)
         this.messageService.loginSuccess()
         this.router.navigate(['location'])
+      }, (err) => {
+          this.messageService.invalidEmailPasswordMessage()
       })
   }
 
   ngOnInit(): void {
     
-    
-
   }
 
 }

@@ -31,7 +31,8 @@ router.post('/signup', async (req, res) => {
 
     const { username, password } = req.body;
 
-    if(username == undefined || password == undefined) return res.status(400).json({"message":"Invalid username and password"})
+    if (username == undefined || password == undefined || username == null || password == null)
+        return res.status(400).json({ "message": "Invalid username and password" })
 
     const isUserExist = (await user.findOne({ where: { username: username } })) ? true : false;
 
@@ -50,6 +51,10 @@ router.post('/login', async (req, res) => {
     const { username, password } = req.body;
 
     const userFound = await user.findOne({ where: { username: username } });
+
+    if (userFound == null) {
+        return res.status(400).send("Invalid email or password")
+    }
 
     if (userFound != null) {
         bcrypt.compare(password, userFound.password).then(isValid => {

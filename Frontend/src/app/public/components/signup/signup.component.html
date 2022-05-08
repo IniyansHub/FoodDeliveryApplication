@@ -1,18 +1,39 @@
+
 <div class="form-container">
-    <form [formGroup]="signupForm" (submit)="signup()">
-
-        <div class="mb-3 form-group">
-            <label for="username" class="form-label">Email address</label>
-            <input formControlName="username" type="email" class="form-control" id="username">
-            <span *ngIf="username?.touched && username?.invalid">Email is required</span>
+    <form class="form" [formGroup]="signupForm" (submit)="signup()">
+        <div style="text-align: center;">SIGNUP</div>
+        <div class="emailField form-field form-group" >
+            <label class="form-label">
+                Email address
+            </label>
+            <input formControlName="username" class="form-input form-control" type="email">
+            <span style="color: rgb(235, 73, 73);" *ngIf="username?.touched && username?.invalid">Please enter a valid email</span>
         </div>
 
-        <div class="mb-3 form-group">
-            <label for="password" class="form-label">Password</label>
-            <input formControlName="password" type="password" class="form-control" id="password">
-            <span *ngIf="password?.touched && password?.invalid">password is required</span>
+        <div class="passwordField form-field form-group">
+            <label class="form-label">
+                Password
+            </label>
+            <input formControlName="password" class="form-input form-control" type="password">
+            <span style="color: rgb(235, 73, 73);" *ngIf="password?.touched && password?.invalid">Password is required</span>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="passwordField form-field form-group">
+            <label class="form-label">
+                Confirm Password
+            </label>
+            <input formControlName="confirmPassword" class="form-input form-control" type="password">
+            <!-- <span style="color: rgb(235, 73, 73);" *ngIf="confirmPassword?.touched && confirmPassword?.invalid">password confirmation is required</span> -->
+        </div>
+
+        <div class="login-button-field">
+            <button>signup</button>
+        </div>
+
+        <div class="already-a-user">
+            <span>New user? <a routerLink="../login" >click here</a></span>
+        </div>
+
     </form>
+
 </div>

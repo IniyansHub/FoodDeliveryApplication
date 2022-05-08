@@ -1,5 +1,4 @@
-<div class="form-container">
-    
+<!-- <div class="form-container">
     <form [formGroup]="loginform" (submit)="login()">
 
         <div class="mb-3 form-group login-label">
@@ -10,7 +9,7 @@
             <label for="username" class="form-label">Email address</label>
             <input formControlName="username" type="email" class="form-control" id="username">
             <span *ngIf="username?.touched && username?.invalid">Email is required</span>
-            <!-- <span *ngIf="username.errors?.email">Please enter a valid email</span> -->
+            <span *ngIf="username.errors?.email">Please enter a valid email</span>
         </div>
 
         <div class="mb-3 form-group">
@@ -24,4 +23,35 @@
         </div>
 
     </form>
+</div> -->
+
+<div class="form-container">
+    <form class="form" [formGroup]="loginform" (submit)="login()">
+        <div style="text-align: center;">LOGIN</div>
+        <div class="emailField form-field form-group" >
+            <label class="form-label">
+                Email address
+            </label>
+            <input formControlName="username" class="form-input form-control" type="email">
+            <span style="color: rgb(235, 73, 73);" *ngIf="username?.touched && username?.invalid">Please enter a valid email</span>
+        </div>
+
+        <div class="passwordField form-field form-group">
+            <label class="form-label">
+                Password
+            </label>
+            <input formControlName="password" class="form-input form-control" type="password">
+            <span style="color: rgb(235, 73, 73);" *ngIf="password?.touched && password?.invalid">Password is required</span>
+        </div>
+
+        <div class="login-button-field">
+            <button>Login</button>
+        </div>
+
+        <div class="already-a-user">
+            <span>New user? <a routerLink="../signup" >click here</a></span>
+        </div>
+
+    </form>
+
 </div>

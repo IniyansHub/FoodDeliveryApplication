@@ -1,4 +1,65 @@
 .form-container{
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 50%;
+    margin-top:2%;
 }
+
+.form{
+    width: 25%;
+    height: 50%;
+    backdrop-filter: blur(10px);
+    background: rgba(0, 0, 0, 0.432);
+    color: rgb(255, 255, 255);
+    display: grid;
+    grid-template-rows: auto auto auto;
+    row-gap:30px;
+    padding: 15px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.form-field{
+    display: grid;
+    grid-template-rows: auto auto;
+}
+
+
+.login-button-field{
+    display: flex;
+    justify-content: center;
+}
+
+.login-button-field button  {
+    width:100%;
+    border: none;
+    outline: none;
+    background-color: orange;
+    color: white;
+    border-radius: 3px;
+    margin-top: 20px;
+    padding: 8px;
+}
+
+.form-input{
+    border: none;
+    outline: none;
+    border-bottom:1px solid ;
+    padding-top: 10px;
+}
+
+.form-input:focus{
+    border-bottom: 2px solid orange;
+}
+
+.already-a-user{
+    text-align: center;
+}
+
+.already-a-user>span>a{
+    text-decoration: none;
+    color: white;
+}
+
+

@@ -16,6 +16,10 @@ export class MessageService {
     this.toastr.error("Loggedout")
   }
 
+  registerSuccess() {
+    this.toastr.success("Registered Successfully")
+  }
+
   normalLogoutMessage() {
     this.toastr.error("Session expired")
   }
@@ -23,5 +27,16 @@ export class MessageService {
   pleaseLoginMessage() {
     this.toastr.info("Please login to access the page")
   }
+
+  invalidEmailPasswordMessage() {
+    this.toastr.error("Invalid email or password")
+  }
+
+  emailExistAlready() {
+    this.toastr.error("Email already exisits!")
+  }
+
+
+
 
 }

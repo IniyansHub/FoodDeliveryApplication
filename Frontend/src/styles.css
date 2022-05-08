@@ -4,3 +4,7 @@
 .login-toast{
     top:10%;
 }
+
+body{
+    background-image: url("./assets/images/bg1.jpg");
+}
