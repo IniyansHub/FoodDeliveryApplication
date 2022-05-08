@@ -1,10 +1,16 @@
 <div class="form-container">
+    
     <form [formGroup]="loginform" (submit)="login()">
+
+        <div class="mb-3 form-group login-label">
+            Login Here
+        </div>
 
         <div class="mb-3 form-group">
             <label for="username" class="form-label">Email address</label>
             <input formControlName="username" type="email" class="form-control" id="username">
             <span *ngIf="username?.touched && username?.invalid">Email is required</span>
+            <!-- <span *ngIf="username.errors?.email">Please enter a valid email</span> -->
         </div>
 
         <div class="mb-3 form-group">
@@ -13,7 +19,9 @@
             <span *ngIf="password?.touched && password?.invalid">password is required</span>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="mb-3 form-group" >
+            <button type="submit" class="btn btn-primary" style="width:100%;">Login</button>
+        </div>
 
     </form>
 </div>

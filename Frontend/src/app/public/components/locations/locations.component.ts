@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 
 @Component({
@@ -8,20 +10,35 @@ import { ApiService } from '../../services/api.service';
 })
 export class LocationsComponent implements OnInit {
 
-  locations:any=[]
+  states:any= [
+    "Andhra Pradesh","Karnataka", "Kerala", "Madhya Pradesh",
+    "Maharashtra", "Manipur", "Odisha",
+    "Tamil Nadu", "Telangana", "Tripura", "Uttarakhand", "Uttar Pradesh", "West Bengal",
+    "Chandigarh", "Delhi", "Puducherry"
+  ]
 
-  constructor(private service:ApiService) { }
   
+
+  locations!: any
+  
+  addressForm = new FormGroup({
+    name: new FormControl('',Validators.required),
+    address1: new FormControl('', Validators.required),
+    address2: new FormControl('', Validators.required),
+    city:new FormControl('',Validators.required)
+  });
+
   fetchLocation() {
-    this.service.getLocation()
-      .subscribe((res: any) => {
-        this.locations=res
-        console.log(res[0].location)
-    })
+    this.http.get("http://localhost:3000/api/getlocation")
+      .subscribe((msg) => {
+          this.locations=msg
+        })
   }
 
+  constructor(private http:HttpClient) { }
+  
   ngOnInit(): void {
-    
+    console.log(this.states)
   }
 
 }

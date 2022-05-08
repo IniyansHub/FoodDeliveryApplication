@@ -94,13 +94,11 @@ router.get('/getlocation', passport.authenticate('accesstoken', { session: false
     res.status(200).send(locations)
 })
 
-router.delete('/logout', passport.authenticate('refreshtoken', { session: false }), async (req, res) => {
-    
+router.delete('/logout', passport.authenticate('accesstoken', { session: false }), async (req, res) => {
     token_model.destroy({
         where: { userId: req.user.sub },
         truncate: true 
     })
-    
     res.status(200).json({"message":"Logged out successfully!"})
 })
 
@@ -110,9 +108,9 @@ router.get('/hotel', async(req,res)=>{
     res.status(200).json({ "hotels": "" + hotelData})
 })
 
-router.get('/menu/:id',async(req,res)=>{
+router.get('/menu/:id', passport.authenticate('accesstoken', { session: false }) , async(req,res)=>{
     const menuData = await menu.findAll({where:{hotelId:req.params.id}})
-    res.status(200).json({ "menus": "" + menuData})
+    res.status(200).json(menuData)
 })
  
 

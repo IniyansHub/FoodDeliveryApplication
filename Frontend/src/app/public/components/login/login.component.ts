@@ -1,8 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ApiService } from '../../services/api.service';
+import { AuthService } from 'src/app/core/auth/auth.service';
+import { TokenService } from 'src/app/core/services/token.service';
+import { MessageService } from '../../services/message.service';
+
 
 @Component({
   selector: 'app-login',
@@ -12,14 +14,14 @@ import { ApiService } from '../../services/api.service';
 export class LoginComponent implements OnInit {
 
   constructor(
-    private http: HttpClient,
     private router: Router,
-    private apiService:ApiService
-    
+    private authService: AuthService,
+    private tokenService: TokenService,
+    private messageService:MessageService
   ) { }
 
   loginform = new FormGroup({
-    username: new FormControl('',Validators.required),
+    username: new FormControl('',[Validators.required,Validators.email]),
     password: new FormControl('',Validators.required)
   });
 
@@ -31,15 +33,14 @@ export class LoginComponent implements OnInit {
     return this.loginform.get('password')
   }
 
-  
-
   login() {
-    this.apiService.logginUser(this.loginform.getRawValue())
+    this.authService.loginUser(this.loginform.getRawValue())
       .subscribe((res:any) => {
-        localStorage.setItem("access_token", res.access_token)
-        localStorage.setItem("refresh_token", res.refresh_token)
+        this.tokenService.saveAccessToken(res.access_token)
+        this.tokenService.saveRefreshToken(res.refresh_token)
+        this.messageService.loginSuccess()
         this.router.navigate(['location'])
-    })
+      })
   }
 
   ngOnInit(): void {

@@ -10,6 +10,9 @@ import {
 
 import { catchError, Observable, switchMap, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { TokenService } from '../services/token.service';
+import { AuthService } from '../auth/auth.service';
+
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -17,52 +20,53 @@ export class AuthInterceptor implements HttpInterceptor {
   refreshed: boolean = false;
   refreshReq: boolean = false;
 
-  constructor(private http:HttpClient,private router:Router) {}
+  constructor(
+    private http: HttpClient,
+    private tokenService: TokenService,
+    private authService:AuthService
+  ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
     let req;
 
     if (this.refreshReq) {
-      req= request.clone({
+      req = request.clone({
         setHeaders: {
-          Authorization:`Bearer ${localStorage.getItem("refresh_token")}`
+          Authorization: "Bearer "+this.tokenService.getRefreshToken()
         }
       })
+      this.refreshReq = false;
     } else {
-      console.log("inside normal response section")
-      req= request.clone({
+      req = request.clone({
         setHeaders: {
-          Authorization:`Bearer ${localStorage.getItem("access_token")}`
+          Authorization: "Bearer "+this.tokenService.getAccessToken()
         }
       })
     }
-    
-    return next.handle(req).pipe(catchError((err:HttpErrorResponse) => {
-      if (err && err.status == 401 && !this.refreshed) {
-        this.refreshed = true;
-        this.refreshReq = true;
-        console.log("inside refreshing section")
-        return this.http.post('http://localhost:3000/api/token',"").pipe(
-          switchMap((res: any) => {
-            localStorage.setItem("access_token", res.access_token)
-            return next.handle(request.clone({
-              setHeaders: {
-                Authorization: `Bearer ${localStorage.getItem("access_token")}`
-              }
-            }));
-          })
-        ).pipe(catchError((err: HttpErrorResponse) => {
-          this.router.navigate([''])
-          return throwError(()=>err);
-        }))
-      }
-
-      this.refreshReq = true;
-      this.refreshed = false;
-      return throwError(()=>err);
+      return next.handle(req).pipe(catchError((err: HttpErrorResponse) => {
+        if (err && err.status == 401 && !this.refreshed) {
+          this.refreshed = true;
+          this.refreshReq = true;
+          return this.http.post('http://localhost:3000/api/token', "").pipe(
+            switchMap((res: any) => {
+              this.tokenService.saveAccessToken(res.access_token)
+              return next.handle(request.clone({
+                setHeaders: {
+                  Authorization: "Bearer " + this.tokenService.getAccessToken()
+                }
+              }));
+            })
+          ).pipe(catchError((err: HttpErrorResponse) => {
+            this.authService.normalLogout()
+            return throwError(() => err);
+          }))
+        }
+        this.refreshed = false;
+        return throwError(() => err);
       
-    }));
+      }));
+
     
   }
 }

@@ -1,4 +1,28 @@
 .form-container{
     display: flex;
     justify-content: center;
+    align-items: center;
+    margin-top: 10%;
 }
+
+/* .login-label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-weight: bold;
+}
+
+form{
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #b7cef0;
+    background-color:#b7cef0 ;
+}
+
+input{
+    
+} */
