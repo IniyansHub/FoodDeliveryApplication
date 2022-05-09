@@ -9,6 +9,10 @@ import { MessageService } from 'src/app/public/services/message.service';
 export class AuthService {
   baseUrl = 'http://localhost:3000/api/';
 
+  authorizeUser() {
+    return this.http.get(`${this.baseUrl}authorize`)
+  }
+
   loginUser(userdata: any) {
     return this.http.post(`${this.baseUrl}login`, userdata)
   }
@@ -27,7 +31,6 @@ export class AuthService {
     localStorage.clear()
     this.messageService.normalLogoutMessage()
     this.router.navigate(['login'])
-    
   }
 
   isUserLoggedIn():boolean{

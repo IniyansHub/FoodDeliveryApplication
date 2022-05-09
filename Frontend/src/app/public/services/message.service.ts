@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr'
 @Injectable({
   providedIn: 'root'
 })
+
 export class MessageService {
 
   constructor(private toastr: ToastrService) { }
@@ -13,7 +14,7 @@ export class MessageService {
   }
 
   logoutSuccess() {
-    this.toastr.error("Loggedout")
+    this.toastr.error("Logged out")
   }
 
   registerSuccess() {
@@ -33,10 +34,9 @@ export class MessageService {
   }
 
   emailExistAlready() {
-    this.toastr.error("Email already exisits!")
+    this.toastr.error("Email already exisits!", undefined, {
+      timeOut:3000
+    })
   }
-
-
-
 
 }

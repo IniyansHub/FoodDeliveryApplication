@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { PublicModule } from './public/public.module';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { ToastrModule } from 'ngx-toastr'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { PrivateModule } from './private/private.module';
 
 @NgModule({
   declarations: [
@@ -19,13 +20,15 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
     AppRoutingModule,
     CoreModule,
     PublicModule,
+    PrivateModule,
     SharedModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     ToastrModule.forRoot({
       closeButton:true,
-      positionClass: "login-toast",
+      positionClass: "toast-message",
       timeOut: 1000,
-      progressBar:true
+      progressBar: true,
     })
   ],
   providers: [{

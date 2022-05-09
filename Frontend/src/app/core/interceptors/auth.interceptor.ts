@@ -9,7 +9,6 @@ import {
 } from '@angular/common/http';
 
 import { catchError, Observable, switchMap, throwError } from 'rxjs';
-import { Router } from '@angular/router';
 import { TokenService } from '../services/token.service';
 import { AuthService } from '../auth/auth.service';
 
@@ -58,7 +57,9 @@ export class AuthInterceptor implements HttpInterceptor {
               }));
             })
           ).pipe(catchError((err: HttpErrorResponse) => {
-            this.authService.normalLogout()
+            if (err && err.status == 401) {
+              this.authService.normalLogout()
+            }
             return throwError(() => err);
           }))
         }

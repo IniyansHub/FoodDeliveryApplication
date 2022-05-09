@@ -46,6 +46,7 @@ router.post('/signup', async (req, res) => {
 })
 
 
+
 router.post('/login', async (req, res) => {
 
     const { username, password } = req.body;
@@ -118,6 +119,9 @@ router.get('/menu/:id', passport.authenticate('accesstoken', { session: false })
     res.status(200).json(menuData)
 })
  
+router.get('/authorize', passport.authenticate('accesstoken', { session: false }), async (req, res) => {
+    res.status(200).send("Authorized");
+})
 
 
 module.exports = router

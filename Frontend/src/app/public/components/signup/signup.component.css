@@ -57,9 +57,17 @@
     text-align: center;
 }
 
-.already-a-user>span>a{
+.already-a-user a{
     text-decoration: none;
     color: white;
+    
+}
+
+.already-a-user a:hover{
+    text-decoration: none;
+    color: white;
+    border-bottom: 2px solid orange;
+    
 }
 
 

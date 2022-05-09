@@ -1,33 +1,7 @@
-<!-- <div class="form-container">
-    <form [formGroup]="loginform" (submit)="login()">
-
-        <div class="mb-3 form-group login-label">
-            Login Here
-        </div>
-
-        <div class="mb-3 form-group">
-            <label for="username" class="form-label">Email address</label>
-            <input formControlName="username" type="email" class="form-control" id="username">
-            <span *ngIf="username?.touched && username?.invalid">Email is required</span>
-            <span *ngIf="username.errors?.email">Please enter a valid email</span>
-        </div>
-
-        <div class="mb-3 form-group">
-            <label for="password" class="form-label">Password</label>
-            <input formControlName="password" type="password" class="form-control" id="password">
-            <span *ngIf="password?.touched && password?.invalid">password is required</span>
-        </div>
-
-        <div class="mb-3 form-group" >
-            <button type="submit" class="btn btn-primary" style="width:100%;">Login</button>
-        </div>
-
-    </form>
-</div> -->
 
 <div class="form-container">
     <form class="form" [formGroup]="loginform" (submit)="login()">
-        <div style="text-align: center;">LOGIN</div>
+        <div class="form-heading">LOGIN</div>
         <div class="emailField form-field form-group" >
             <label class="form-label">
                 Email address
@@ -49,7 +23,7 @@
         </div>
 
         <div class="already-a-user">
-            <span>New user? <a routerLink="../signup" >click here</a></span>
+            <span>New user? <a routerLink="../signup" > Signup here</a></span>
         </div>
 
     </form>

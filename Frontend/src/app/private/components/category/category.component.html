@@ -1,0 +1,13 @@
+<div class="background-div">
+  <div class="categories-wrapper">
+    <div class="category-card" *ngFor="let category of categories">
+      <div class="category-image-section">
+        <img [src]="category.image1" />
+        <img [src]="category.image2" />
+        <img [src]="category.image3" />
+      </div>
+      <div class="category-title">{{ category.categoryName }}</div>
+      <div class="category-description">{{ category.categoryDescription }}</div>
+    </div>
+  </div>
+</div>

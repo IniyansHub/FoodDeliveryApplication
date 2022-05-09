@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
         this.tokenService.saveAccessToken(res.access_token)
         this.tokenService.saveRefreshToken(res.refresh_token)
         this.messageService.loginSuccess()
-        this.router.navigate(['location'])
+        this.router.navigate(['private/location'])
       }, (err) => {
           this.messageService.invalidEmailPasswordMessage()
       })

@@ -8,3 +8,11 @@
 body{
     background-image: url("./assets/images/bg1.jpg");
 }
+
+
+.toast-message{
+    top:12%;
+    width: 350px !important;  
+}
+
+
