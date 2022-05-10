@@ -6,6 +6,7 @@ import { PrivateComponent } from './private.component';
 import { LocationsComponent } from './components/locations/locations.component';
 import { SharedModule } from '../shared/shared.module';
 import { CategoryComponent } from './components/category/category.component';
+import { RestaurantsComponent } from './components/restaurants/restaurants.component';
 
 
 
@@ -13,7 +14,8 @@ import { CategoryComponent } from './components/category/category.component';
   declarations: [
     PrivateComponent,
     LocationsComponent,
-    CategoryComponent
+    CategoryComponent,
+    RestaurantsComponent
   ],
   imports: [
     CommonModule,

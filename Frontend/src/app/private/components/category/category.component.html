@@ -1,6 +1,6 @@
 <div class="background-div">
   <div class="categories-wrapper">
-    <div class="category-card" *ngFor="let category of categories">
+    <div class="category-card" *ngFor="let category of categories" (click)="sendCategory(category.categoryId)">
       <div class="category-image-section">
         <img [src]="category.image1" />
         <img [src]="category.image2" />
@@ -9,5 +9,10 @@
       <div class="category-title">{{ category.categoryName }}</div>
       <div class="category-description">{{ category.categoryDescription }}</div>
     </div>
+
+    <div class="all-category-card">
+      <div class="explore-all">Explore all cuisines</div>
+    </div>
+
   </div>
 </div>
