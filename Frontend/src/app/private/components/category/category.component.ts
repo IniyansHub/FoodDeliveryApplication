@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth/auth.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class CategoryComponent implements OnInit {
 
   categories = [
     {
-      "categoryId": 1,
+      "categoryId": 3,
       "categoryName": "Indian",
       "image1": "../../../../assets/images/indian-category.jpg",
       "image2": "../../../../assets/images/indian-category2.jpg",
@@ -30,7 +31,7 @@ export class CategoryComponent implements OnInit {
       New American cuisine features innovative use of seasoning and sauces.`
     },
     {
-      "categoryId": 3,
+      "categoryId": 1,
       "categoryName": "Chinese",
       "image1": "../../../../assets/images/chinese-category1.jpg",
       "image2": "../../../../assets/images/chinese-category2.jpg",
@@ -40,7 +41,7 @@ export class CategoryComponent implements OnInit {
        ingredients used, knifework, cooking time, and seasoning.`
     },
     {
-      "categoryId": 4,
+      "categoryId": 5,
       "categoryName": "Arabian",
       "image1": "../../../../assets/images/arabian-category1.jpg",
       "image2": "../../../../assets/images/arabian-category2.jpg",
@@ -50,7 +51,7 @@ export class CategoryComponent implements OnInit {
       seasoned with a variety of herbs and spices. Several other side dishes and salads are included.`
     },
     {
-      "categoryId": 5,
+      "categoryId": 4,
       "categoryName": "Italian",
       "image1": "../../../../assets/images/italian-category.jpg",
       "image2": "../../../../assets/images/italian-category2.jpg",
@@ -63,11 +64,17 @@ export class CategoryComponent implements OnInit {
 
 
   sendCategory(categoryId:any){
-    console.log(categoryId)
+    localStorage.setItem("categoryId", categoryId);
+    this.router.navigate(['private/restaurants'])
+  }
+
+  exploreAllCategories() {
+    localStorage.setItem("categoryId", "ID");
+    this.router.navigate(['private/restaurants'])
   }
 
 
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService,private router:Router) { }
 
   ngOnInit(): void {
     this.authService.authorizeUser().subscribe()

@@ -1,1 +1,36 @@
-<p>restaurants works!</p>
+<div class="restaurant-component-container">
+    <div class="dummy">
+
+    </div>
+    <div class="searchbox"> 
+        <input type="text" [placeholder]="placeholder">
+    </div>
+    <div class="sidebar-left">
+        
+    </div>
+    <div class="hotels-wrapper">
+        <div class="hotel-card" *ngFor="let hotel of hotels">
+            <div class="hotel-image-section">
+                <img src="../../../../assets/images/hotel-images/burgerking.jpg">
+            </div>
+            <div class="title-section">
+                <h3>{{hotel.hotelName}}</h3>
+            </div>
+            <div class="rating-section">
+                <img src="https://img.icons8.com/fluency/48/000000/star.png"/>
+                <img src="https://img.icons8.com/fluency/48/000000/star.png"/>
+                <img src="https://img.icons8.com/fluency/48/000000/star.png"/>
+                <img src="https://img.icons8.com/fluency/48/000000/star.png"/>
+                
+            </div>
+            <div class="hotel-description-section">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quod iusto, veritatis odio voluptates, 
+                debitis reiciendis facere excepturi modi deserunt impedit numquam vero fugit quas tempora minima reprehenderit! 
+                Ea, quis.
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+
+

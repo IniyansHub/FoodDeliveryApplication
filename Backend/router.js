@@ -74,7 +74,7 @@ router.post('/login', async (req, res) => {
                         } else {
                             token_model.update({ refreshToken: refresh_token }, { where: { userId: userFound.id } })
                                 .then(msg => {
-                                    //console.log(msg)
+                                    
                                 })
                                 .catch(err => {
                                     console.log(err)
@@ -109,10 +109,15 @@ router.delete('/logout', passport.authenticate('accesstoken', { session: false }
 })
 
 
-router.get('/hotel', async(req,res)=>{
+router.get('/hotel',passport.authenticate('accesstoken', { session: false }), async(req,res)=>{
    const hotelData =  await hotel.findAll()
-    res.status(200).json({ "hotels": "" + hotelData})
+    res.status(200).send(hotelData)
 })
+
+router.get('/hotel/:id',passport.authenticate('accesstoken', { session: false }), async(req,res)=>{
+    const hotelData =  await hotel.findAll({where:{categoryId:req.params.id}})
+    return res.status(200).send(hotelData)
+ })
 
 router.get('/menu/:id', passport.authenticate('accesstoken', { session: false }) , async(req,res)=>{
     const menuData = await menu.findAll({where:{hotelId:req.params.id}})

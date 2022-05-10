@@ -9,7 +9,7 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     column-gap: 10px;
-    row-gap: 30px;
+    row-gap: 25px;
     margin: 10px;
     background: transparent;
 }
@@ -25,6 +25,22 @@
     padding: 10px;
     padding-bottom: 20px;
     cursor: pointer;
+    font-weight: medium;
+    font-family: sans-serif;
+}
+
+.category-card:hover{
+    box-sizing: border-box;
+    background-color: white;
+    display: grid;
+    height: 100%;
+    grid-template-rows:50% 15% 20% 15%;
+    row-gap: 10px;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    padding-bottom: 20px;
+    cursor: pointer;
+    background-color: black;
 }
 
 .category-title{
@@ -43,6 +59,7 @@
     width:200px;
     height: 200px;
     padding-right: 5px;
+    border: 2px solid white;
 }
 
 .category-description{
@@ -70,8 +87,8 @@
 }
 
 .explore-all:hover{
-    background-color: orange;
-    color: white;
+    background-color: black;
+    color: orange;
     font-weight: bold;
 }
 
