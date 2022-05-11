@@ -1,7 +1,4 @@
 <div class="restaurant-component-container">
-    <div class="dummy">
-
-    </div>
     <div class="searchbox"> 
         <input type="text" [placeholder]="placeholder">
     </div>
@@ -9,9 +6,9 @@
         
     </div>
     <div class="hotels-wrapper">
-        <div class="hotel-card" *ngFor="let hotel of hotels">
+        <div class="hotel-card" *ngFor="let hotel of hotels" (click)="getHotelId(hotel.hotelId)">
             <div class="hotel-image-section">
-                <img src="../../../../assets/images/hotel-images/burgerking.jpg">
+                <img [src]="hotel.hotelImage">
             </div>
             <div class="title-section">
                 <h3>{{hotel.hotelName}}</h3>

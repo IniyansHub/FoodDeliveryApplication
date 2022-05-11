@@ -12,11 +12,11 @@
 
 .restaurant-component-container{
     width:100%;
-    height:max-content;
+    /* height:max-content; */
     padding: 20px;
     display: grid;
     grid-template-areas:
-    'dummy header header header'
+    'header header header header'
     'left center center center';
     grid-template-columns:20% auto;
     row-gap: 20px;
@@ -24,12 +24,12 @@
 }
 
 .searchbox{
-    display: flex;
-    justify-content: center;
+    position: relative;
     align-items: center;
 }
 
 .searchbox input{
+    transform: translateX(72%);
     width:50%;
     height:50px;
     padding-left: 10px;
@@ -42,11 +42,11 @@
 .sidebar-left{
 width: 100%;
 height: 78.5vh;
-background-color: white;
+background-color: whitesmoke;
 }
 
 .hotels-wrapper{
-    background-color: white;
+    background-color: whitesmoke;
     height: 78.5vh;
     overflow: scroll;
     -ms-overflow-style: none; 
@@ -76,7 +76,8 @@ background-color: white;
     margin: 20px;
     padding: 10px;
     border-radius: 3px;
-    background-color: whitesmoke;
+    background-color: white;
+    border-radius: 8px;
 
 }
 
@@ -104,6 +105,6 @@ background-color: white;
 }
 
 .hotel-card:hover{
-    box-shadow: 2px 2px 2px 0px black;
+    box-shadow: 2px 2px 8px 1px rgb(117, 115, 115);
     cursor: pointer;
 }

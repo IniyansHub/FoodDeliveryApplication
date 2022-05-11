@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/auth/auth.service';
 import { DataService } from '../../service/data.service';
 
 @Component({
@@ -8,24 +10,42 @@ import { DataService } from '../../service/data.service';
 })
 export class RestaurantsComponent implements OnInit {
 
-  placeholder = "Search by hotelname or menus";
+  placeholder = "Search for Restaurants";
 
-  hotels!:any;
+  hotels!: any;
+  
+  getHotelId(id:string) {
+    localStorage.setItem("hotelId", id);
+    this.router.navigate(['private/menus'])
+    
+  }
 
-  constructor(private dataService : DataService) { }
+  
+  constructor(
+    private dataService: DataService,
+    private authService: AuthService,
+    private router:Router
+  ) { 
+    
+  }
 
   ngOnInit(): void {
-    const fetchAll = localStorage.getItem("categoryId") == "ID" ? true : false;
+
+    this.authService.authorizeUser().subscribe()
+
+    const fetchAll = localStorage.getItem("categoryId") != "ID" && !null ? true : false;
+
     if (fetchAll) {
-      this.dataService.fetchAllHotels().subscribe((res) => {
-        this.hotels = res;
+      this.dataService.fetchHotelsBasedOnId().subscribe((res) => {
+        this.hotels = res
       })
     } else {
-      this.dataService.fetchHotelsBasedOnId().subscribe((res) => {
-        this.hotels=res
+      this.dataService.fetchAllHotels().subscribe((res) => {
+        this.hotels = res;
+        
       })
     }
-    
+
   }
 
   

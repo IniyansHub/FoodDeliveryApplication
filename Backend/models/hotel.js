@@ -15,6 +15,9 @@ const hotel = db.define('hotels',{
     },
     categoryType:{
         type:DataTypes.STRING
+    },
+    hotelImage: {
+        type:DataTypes.STRING
     }
 });
 

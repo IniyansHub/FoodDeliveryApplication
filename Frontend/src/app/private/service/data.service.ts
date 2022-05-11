@@ -17,6 +17,12 @@ export class DataService {
     return this.http.get("http://localhost:3000/api/hotel/");
   }
 
+  fetchDishesBasedOnHotelId() {
+    const hotelId = localStorage.getItem("hotelId");
+    console.log(hotelId);
+    return this.http.get("http://localhost:3000/api/menu/"+hotelId);
+  }
+
 
 
 }

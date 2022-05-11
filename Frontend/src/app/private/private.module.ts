@@ -7,6 +7,7 @@ import { LocationsComponent } from './components/locations/locations.component';
 import { SharedModule } from '../shared/shared.module';
 import { CategoryComponent } from './components/category/category.component';
 import { RestaurantsComponent } from './components/restaurants/restaurants.component';
+import { DishesComponent } from './components/dishes/dishes.component';
 
 
 
@@ -15,7 +16,8 @@ import { RestaurantsComponent } from './components/restaurants/restaurants.compo
     PrivateComponent,
     LocationsComponent,
     CategoryComponent,
-    RestaurantsComponent
+    RestaurantsComponent,
+    DishesComponent
   ],
   imports: [
     CommonModule,

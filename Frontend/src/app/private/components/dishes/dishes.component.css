@@ -1,0 +1,199 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.ad-banner{ grid-area: adbanner;}
+.sidebar-left{grid-area: left;}
+.menus-wrapper{grid-area: center;}
+.order-cart-card{grid-area: right;}
+
+.dishes-component-wrapper{
+    width:100%;
+    padding: 10px;
+    display: grid;
+    grid-template-areas:
+    'adbanner adbanner adbanner adbanner'
+    'left center center right';
+    grid-template-columns:20% auto;
+    row-gap: 20px;
+    column-gap: 10px;
+}
+
+.ad-banner{
+    width:100%;
+    height:30vh;
+    background-color: white;
+}
+
+.sidebar-left{
+    background-color: white;
+    height: 56vh;
+    width: 376.5px;
+}
+
+.menus-wrapper{
+    background-color: white;
+    height: 56.3vh;
+    width: 868.66px;
+    overflow: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+    padding: 20px;
+    background-color: whitesmoke;
+}
+
+.menus-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.menu-card{
+    display: grid;
+    grid-template-columns:55% 25% 20%;
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.menu-card:hover{
+    box-shadow: 2px 2px 8px 1px rgb(117, 115, 115);
+    cursor: pointer;
+    font-weight: bold;
+    /* background-color: rgb(144, 216, 144); */
+}
+
+.menu-name {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-family:Arial, Helvetica, sans-serif;
+    width:fit-content;
+    font-size: 1em;
+}
+
+.menu-price{
+    display: flex; 
+    justify-content: right;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.add-to-cart{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+
+.add-to-cart img{
+    width: 40px;
+    height: 40px;
+    cursor:pointer;
+}
+
+.add-to-cart img:hover{
+    content: url("../../../../assets/images/add-green.png");
+    width: 40px;
+    height: 40px;
+}
+
+.order-cart-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 56.3vh;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+    width: 617px;
+}
+
+.order-cart-card::-webkit-scrollbar {
+    display: none;
+}
+
+.no-dishes{
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+font-size: 2em;
+text-align: center;
+}
+
+.order-cart-card-dishes{
+    position: relative;
+    height: 56.3vh;
+    width: 617px;
+    padding: 20px;
+    background-color: whitesmoke;
+}
+
+.order-cart-card-dishes::-webkit-scrollbar {
+    display: none;
+}
+
+.ordered-dishes-wrapper{
+    height: 49vh;
+    overflow: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+}
+
+.ordered-dishes-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.ordered-dish{
+    display: grid;
+    grid-template-columns: 50% 30% 20%;
+    background-color: white;
+    padding: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.dish-plate-name{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.dish-plate-price{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.remove-dish{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    width:100%;
+}
+
+.remove-dish img{
+    width: 20px;
+    height: 20px;
+}
+
+.total-pay{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(158, 230, 136);
+    width:200px;
+    height: 50px;
+    color: white;
+    bottom: -5px;
+    left: 35%;
+    font-size: 1.5em;
+    letter-spacing: 2px;
+}
+
+.total-pay:hover{
+    background-color: rgb(28, 226, 45);
+    cursor: pointer;
+}
+
+

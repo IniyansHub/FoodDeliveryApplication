@@ -1,0 +1,41 @@
+<div class="dishes-component-wrapper">
+
+    <div class="ad-banner">
+
+    </div>
+
+    <div class="sidebar-left">
+
+    </div>
+
+    <div class="menus-wrapper">
+        <div class="menu-card" *ngFor="let menu of menus">
+            <div class="menu-name">{{menu.dishes}}</div>
+            <div class="menu-price"> &#8377;{{menu.price}}</div>
+            <div class="add-to-cart" (click)="addFood({dishName:menu.dishes,dishPrice:menu.price})">
+                <img src="../../../../assets/images/hotel-images/add-menu.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="order-cart-card" *ngIf="cart.length==0">
+        <div  class="no-dishes" >
+            No dishes in your plate!<br>
+            <img src="../../../../assets/images/emptyPlate.png">
+        </div>
+    </div>
+
+    <div class="order-cart-card-dishes" *ngIf="cart.length!=0">
+        <div class="ordered-dishes-wrapper">
+            <div class="ordered-dish" *ngFor="let dish of cart; let i = index">
+                <div class="dish-plate-name" style="justify-content:left;">{{dish.dishName}}</div>
+                <div class="dish-plate-price" style="justify-content:right;"> &#8377;{{dish.dishPrice}}</div>
+                <div class="remove-dish" (click)="removeDish(i)"><img src="../../../../assets/images/remove.png"></div>
+            </div>
+        </div>
+        <div class="total-pay">
+               <span style="font-size:0.6em; color:black;font-weight: bold;">Total Cost:&nbsp;&nbsp;</span> &#8377;{{totalPrice}}
+        </div>
+    </div>
+</div>
+
