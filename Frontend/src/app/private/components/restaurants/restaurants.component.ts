@@ -33,19 +33,9 @@ export class RestaurantsComponent implements OnInit {
 
     this.authService.authorizeUser().subscribe()
 
-    const fetchAll = localStorage.getItem("categoryId") != "ID" && !null ? true : false;
-
-    if (fetchAll) {
-      this.dataService.fetchHotelsBasedOnId().subscribe((res) => {
-        this.hotels = res
-      })
-    } else {
-      this.dataService.fetchAllHotels().subscribe((res) => {
-        this.hotels = res;
-        
-      })
-    }
-
+    this.dataService.fetchAllHotels().subscribe((res) => {
+      this.hotels=res
+    })
   }
 
   

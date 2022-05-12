@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const user = require('./models/user');
-const location = require('./models/location')
-const hotel = require('./models/hotel')
-const menu = require('./models/menu')
-const token_model = require('./models/token_model')
+const user = require('../models/user');
+const location = require('../models/location')
+const hotel = require('../models/hotel')
+const menu = require('../models/menu')
+const token_model = require('../models/token_model')
 const bcrypt = require('bcrypt')
 const cors = require('cors');
-const jwtTokenGenerator = require('./Jwt_helper/tokenGenerator')
+const jwtTokenGenerator = require('../Jwt_helper/tokenGenerator')
 const passport = require('passport');
-require('./Middlewares/passport');
+require('../Middlewares/passport');
 router.use(express.json())
 router.use(cors())
 

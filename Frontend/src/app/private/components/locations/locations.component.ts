@@ -11,13 +11,6 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 })
 export class LocationsComponent implements OnInit {
 
-  // states:any= [
-  //   "Andhra Pradesh","Karnataka", "Kerala", "Madhya Pradesh",
-  //   "Maharashtra", "Manipur", "Odisha",
-  //   "Tamil Nadu", "Telangana", "Tripura", "Uttarakhand", "Uttar Pradesh", "West Bengal",
-  //   "Chandigarh", "Delhi", "Puducherry"
-  // ]
-
   locations!: any
   
   // addressForm = new FormGroup({
