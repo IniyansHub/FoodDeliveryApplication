@@ -9,18 +9,57 @@ import { DataService } from '../../service/data.service';
 export class DishesComponent implements OnInit {
 
   menus: any;
-  cart: any = [];
-  totalPrice: number=0;
 
-  
+  parsedObject = JSON.parse('[' + localStorage.getItem("cartItem") + ']');
+
+  cart: any= this.parsedObject[0]!=null?this.parsedObject : []
+
+  totalPrice:number=parseInt(localStorage.getItem("totalPrice") || "0");
+
   addFood(foodData: any) {
     this.cart.push(foodData)
-    this.totalPrice+=parseInt(foodData.dishPrice)
+    if (localStorage.getItem("cartItem") == null) {
+      localStorage.setItem("cartItem", `{"dishName":"${foodData.dishName}","dishPrice":"${foodData.dishPrice}"}`)
+      this.totalPrice+=foodData.dishPrice
+      localStorage.setItem("totalPrice", ""+this.totalPrice)
+    } else {
+      localStorage.setItem("cartItem",localStorage.getItem("cartItem")+","+`{"dishName":"${foodData.dishName}","dishPrice":"${foodData.dishPrice}"}`)
+      this.totalPrice+=parseInt(foodData.dishPrice)
+      localStorage.setItem("totalPrice",""+this.totalPrice)
+    }
+    
   }
 
-  removeDish(dishIndex:any) {
-    const removedDish = this.cart.splice(dishIndex, 1)
-    this.totalPrice-=parseInt(removedDish[0].dishPrice)
+
+
+  removeDish(dishIndex: any) {
+
+    let allObject = JSON.parse('[' + localStorage.getItem("cartItem") + ']');//[{}]
+
+    allObject.splice(dishIndex, 1);
+
+    localStorage.removeItem("cartItem");
+
+    const removedDish = this.cart.splice(dishIndex, 1);
+
+    console.log(removedDish[0].dishPrice)
+
+    allObject.forEach((element:any) => {
+      if (localStorage.getItem("cartItem") == null) {
+        localStorage.setItem("cartItem", `{"dishName":"${element.dishName}","dishPrice":"${element.dishPrice}"}`)
+      } else {
+        localStorage.setItem("cartItem",localStorage.getItem("cartItem")+","+`{"dishName":"${element.dishName}","dishPrice":"${element.dishPrice}"}`)
+      }
+
+  });
+    
+
+    this.totalPrice -= parseInt(removedDish[0].dishPrice)
+
+    localStorage.setItem("totalPrice",""+this.totalPrice)
+
+
+
   }
 
   constructor(
@@ -28,11 +67,10 @@ export class DishesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    console.log(this.parsedObject)
+    console.log(this.cart)
     this.dataService.fetchDishesBasedOnHotelId().subscribe((res) => {
       this.menus = res
-    }, (err) => {
-      console.log(err)
     })
     
   }

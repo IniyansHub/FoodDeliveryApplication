@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const user = require('../models/user');
 const location = require('../models/location')
+const category = require('../models/category')
 const hotel = require('../models/hotel')
 const menu = require('../models/menu')
 const token_model = require('../models/token_model')
@@ -100,23 +101,23 @@ router.get('/getlocation', passport.authenticate('accesstoken', { session: false
     res.status(200).send(locations)
 })
 
-router.delete('/logout', passport.authenticate('accesstoken', { session: false }), async (req, res) => {
-    token_model.destroy({
-        where: { userId: req.user.sub },
-        truncate: true 
+router.get('/category', passport.authenticate('accesstoken', { session: false }), async (req, res) => {
+    await category.findAll().then(categories => {
+        res.status(200).json(categories)
+    }).catch(err => {
+        res.status(404).json({"Message":"Unable to fetch categories from the database"})
     })
-    res.status(200).json({"message":"Logged out successfully!"})
+    
 })
-
 
 router.get('/hotel',passport.authenticate('accesstoken', { session: false }), async(req,res)=>{
    const hotelData =  await hotel.findAll()
-    res.status(200).send(hotelData)
+    res.status(200).json(hotelData)
 })
 
 router.get('/hotel/:id',passport.authenticate('accesstoken', { session: false }), async(req,res)=>{
     const hotelData =  await hotel.findAll({where:{categoryId:req.params.id}})
-    return res.status(200).send(hotelData)
+    return res.status(200).json(hotelData)
  })
 
 router.get('/menu/:id', passport.authenticate('accesstoken', { session: false }) , async(req,res)=>{
@@ -125,7 +126,15 @@ router.get('/menu/:id', passport.authenticate('accesstoken', { session: false })
 })
  
 router.get('/authorize', passport.authenticate('accesstoken', { session: false }), async (req, res) => {
-    res.status(200).send("Authorized");
+    res.status(200).json("Authorized");
+})
+
+router.delete('/logout', passport.authenticate('accesstoken', { session: false }), async (req, res) => {
+    token_model.destroy({
+        where: { userId: req.user.sub },
+        truncate: true 
+    })
+    res.status(200).json({"message":"Logged out successfully!"})
 })
 
 

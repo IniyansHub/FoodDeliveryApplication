@@ -1,24 +1,28 @@
 const { DataTypes } = require('sequelize');
 const db = require('../config/database-config')
 
-const menu = db.define('menus',{
-    menuId:{
+const category = db.define('categories',{
+    categoryId:{
         type:DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true
-    }, 
-    hotelId:{
-        type:DataTypes.INTEGER
     },
-    hotelName:{
+    categoryName:{
         type:DataTypes.STRING
     },
-    dishes:{
+    image1:{
+        type:DataTypes.INTEGER
+    },
+    image2:{
         type:DataTypes.STRING
     },
-    price:{
-        type:DataTypes.INTEGER
+    image3: {
+        type:DataTypes.STRING
+    },
+    categoryDescription: {
+        type:DataTypes.STRING
     }
 });
 
-module.exports = menu;
+
+module.exports = category

@@ -29,6 +29,7 @@ import { PrivateModule } from './private/private.module';
       positionClass: "toast-message",
       timeOut: 1000,
       progressBar: true,
+      preventDuplicates:true
     })
   ],
   providers: [{

@@ -6,7 +6,11 @@ import { Injectable } from '@angular/core';
 })
 export class DataService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
+  
+  fetchAllCategories() {
+    return this.http.get("http://localhost:3000/api/category")
+  }
 
   fetchHotelsBasedOnId() {
     const categoryId = localStorage.getItem("categoryId");
