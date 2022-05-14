@@ -13,7 +13,7 @@ const routes: Routes = [{
     { path: 'location', component: LocationsComponent, canActivate: [AuthGuard] },
     { path: 'category', component: CategoryComponent, canActivate: [AuthGuard] },
     { path: 'restaurants', component: RestaurantsComponent, canActivate: [AuthGuard] },
-    { path: 'menus', component: DishesComponent}
+    { path: 'menus', component: DishesComponent,canActivate:[AuthGuard] }
   ]
 }];
 

@@ -11,13 +11,14 @@ import { DishesComponent } from './components/dishes/dishes.component';
 
 
 
+
 @NgModule({
   declarations: [
     PrivateComponent,
     LocationsComponent,
     CategoryComponent,
     RestaurantsComponent,
-    DishesComponent
+    DishesComponent 
   ],
   imports: [
     CommonModule,

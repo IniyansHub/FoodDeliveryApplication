@@ -13,7 +13,7 @@ export class PublicComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.authService.isUserLoggedIn()) {
-      this.router.navigate(['private'])
+      this.router.navigate(['private/category'])
     }
   }
 

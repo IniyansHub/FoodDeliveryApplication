@@ -21,10 +21,11 @@ adminRouter.get('/users', passport.authenticate('accesstoken', { session: false 
 })
 
 adminRouter.put('/updateuser/:id', passport.authenticate('accesstoken', { session: false }), async (req, res) => {
-    const { newEmail } = req.body;
+    const { newEmail,isAdmin } = req.body;
     await user.update(
         {
-            username:newEmail
+            username: newEmail,
+            isAdmin:isAdmin
         },
         {
             where:{id:req.params.id}
@@ -32,9 +33,11 @@ adminRouter.put('/updateuser/:id', passport.authenticate('accesstoken', { sessio
     ).then(msg => {
         if (msg == 1) res.status(200).json({ "Message": "Updation successfull" })
         else res.status(400).json({"Message":`Cannot update user's email with id ${req.params.id}. Maybe user not found or req.body is empty`})
-    })
+    }).catch(err=>{console.log(err)})
         
 });
+
+
 
 
 adminRouter.delete('/deleteuser/:id', passport.authenticate('accesstoken', { session: false }), async (req, res) => {

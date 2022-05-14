@@ -10,6 +10,7 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { ToastrModule } from 'ngx-toastr'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { PrivateModule } from './private/private.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PrivateModule } from './private/private.module';
       timeOut: 1000,
       progressBar: true,
       preventDuplicates:true
-    })
+    }),
+    AdminModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

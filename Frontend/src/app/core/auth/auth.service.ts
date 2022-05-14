@@ -37,5 +37,13 @@ export class AuthService {
     return localStorage.getItem("access_token")!=null
   }
 
+  isAdmin(): boolean{
+    const isAdmin = localStorage.getItem("isAdmin")=="1"?true:false
+    if (isAdmin) {
+      return true
+    }
+    return false
+  }
+
   constructor(private http:HttpClient,private router:Router,private messageService:MessageService) { }
 }

@@ -54,6 +54,8 @@ router.post('/login', async (req, res) => {
 
     const userFound = await user.findOne({ where: { username: username } });
 
+    console.log(userFound)
+
     if (userFound == null) {
         return res.status(400).send("Invalid email or password")
     }
@@ -83,7 +85,7 @@ router.post('/login', async (req, res) => {
                         }
                     })
 
-                return res.status(200).send({ access_token: access_token, refresh_token: refresh_token })
+                return res.status(200).send({ access_token: access_token, refresh_token: refresh_token, isAdmin:userFound.isAdmin })
 
             }
         })
