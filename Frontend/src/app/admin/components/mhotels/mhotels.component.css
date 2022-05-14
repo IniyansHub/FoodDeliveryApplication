@@ -1,0 +1,170 @@
+.component-wrapper{
+    margin: 20px;
+}
+
+.tab{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    position: relative;
+}
+
+.searchbox{
+    position: absolute;
+    width: 35vw;
+    height: 2.5em;
+    font-size: larger;
+    padding: 3px;
+    outline: none;
+    border: none;
+}
+
+.user-content-wrapper{
+    margin: 0 auto;
+    background-color: aliceblue;
+    margin-top: 10px;
+    width: 50vw;
+    height: 85vh;
+    text-align: center;
+    padding-top:30px;
+    overflow: scroll;
+
+}
+
+.user-content-wrapper::-webkit-scrollbar{
+    display: none;
+}
+
+.newUserWrapper{
+    display: flex;
+    width:100%;
+    justify-content: left;
+    margin: 20px;
+}
+
+.newUserWrapper button{
+    width: fit-content;
+    padding: 10px;
+    background-color: rgb(42, 224, 124);
+}
+
+.user-data-wrapper{
+    width:95%;
+    height: 50px;
+    display: grid;
+    grid-template-columns:40% 20% 20% 20%;
+    margin: 20px;
+    background-color: rgb(200, 226, 248);
+    padding: 6px;
+}
+
+.hotel{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.hotel input{
+    width:95%;
+    height: 100%;
+    border: none;
+    background-color: inherit;
+    font-weight: 500;
+}
+
+.editHotel{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.editHotel button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(34, 178, 235);
+    color: white;
+    font-weight: 500;
+}
+
+img{
+    width: 15px;
+    height: 14px;
+    margin-right: 4px;
+}
+
+.saveHotel{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    display: none;
+}
+
+.saveHotel button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(48, 202, 18);
+    color: white;
+    font-weight: 500;
+}
+
+.deleteHotel{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.deleteHotel button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(226, 81, 81);
+    color: white;
+    font-weight: 500;
+}
+
+button{
+    width: 100px;
+    padding: 3px;
+    border: none;
+    border-radius:4px;
+    font-weight: bold;
+}
+
+.newHotelForm{
+    position: absolute;
+    width: 28vw;
+    height: fit-content;
+    background-color:white;
+    padding: 20px;
+    top:20%;
+    left: 35%;
+    display: none;
+    outline: 1px black solid;
+}
+
+form span{
+    right: 10px;
+    top: 5px;
+}
+
+form span img{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+
+}
+
+form label{
+    margin-top: 10px;
+}
+
+form button{
+    margin-top: 10px;
+}
+
+.submit-button{
+    text-align: center;
+}

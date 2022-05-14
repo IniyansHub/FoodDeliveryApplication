@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/auth/auth.service';
 import { MessageService } from 'src/app/public/services/message.service';
 import { AdminDataService } from '../../services/admin-data.service';
 
 @Component({
   selector: 'app-m-users',
-  templateUrl: './m-users.component.html',
-  styleUrls: ['./m-users.component.css']
+  templateUrl: './mUsers.component.html',
+  styleUrls: ['./mUsers.component.css']
 })
 export class MUsersComponent implements OnInit {
 
@@ -18,14 +20,40 @@ export class MUsersComponent implements OnInit {
   constructor(
     private adminDataService: AdminDataService,
     private messageService: MessageService,
-    private router:Router
+    private router: Router,
+    private authService:AuthService
   ) { }
 
-  newUser() {
-    console.log("hello")
-    this.router.navigate(['signup'])
+  newUserForm = new FormGroup({
+    username: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required),
+    confirmPassword: new FormControl('', Validators.required)
+  });
+
+  openForm() {
+    let newUserForm = document.getElementById("newUser") as HTMLDivElement || null;
+    if (newUserForm != null) {
+      newUserForm.style.display = "block"
+    }
   }
 
+  closeForm() {
+    let newUserForm = document.getElementById("newUser") as HTMLDivElement || null;
+    if (newUserForm != null) {
+      newUserForm.style.display = "none"
+    }
+  }
+
+  addNewUser() {
+    this.authService.signupUser(this.newUserForm.getRawValue()).subscribe(
+      (res) => {
+        this.newUserForm.reset()
+        this.users.push(res)
+        this.messageService.registerSuccess()
+        this.closeForm()
+      }
+    )
+  }
 
   editUser(currentUserId: any, index: any) {
     
@@ -46,7 +74,8 @@ export class MUsersComponent implements OnInit {
     
     if (emailEditor != null) {
 
-      emailEditor.style.outline="1px solid black"
+      emailEditor.style.outline = "none"
+      emailEditor.style.backgroundColor = "white";
 
       emailEditor.disabled = false;
 
@@ -74,7 +103,8 @@ export class MUsersComponent implements OnInit {
       }
     }
 
-    emailEditor.style.outline="none"
+    emailEditor.style.outline = "none"
+    emailEditor.style.backgroundColor="inherit"
 
     document.getElementsByClassName("saveUser")[index].setAttribute("style", "display:none")
     

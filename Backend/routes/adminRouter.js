@@ -5,6 +5,7 @@ const hotel = require('../models/hotel')
 const menu = require('../models/menu')
 const cors = require('cors');
 const passport = require('passport');
+const category = require('../models/category');
 require('../Middlewares/passport');
 
 adminRouter.use(express.json())
@@ -53,6 +54,15 @@ adminRouter.delete('/deleteuser/:id', passport.authenticate('accesstoken', { ses
 })
 
 //routes for user ends
+
+//routes for category
+
+adminRouter.get("/getcategory", passport.authenticate('accesstoken', { session: false }), async (req, res) => {
+    const categories = await category.findAll();
+    res.status(200).json(categories)
+})
+
+//routes for category ends
 
 //routes for category and hotels starts
 adminRouter.get('/hotel',passport.authenticate('accesstoken', { session: false }), async(req,res)=>{

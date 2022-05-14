@@ -52,7 +52,7 @@ export class MessageService {
   }
 
   promotedToAdmin() {
-    this.toastr.success("Updation successfull", undefined, {
+    this.toastr.success("New admin addedd Successfully", undefined, {
       timeOut:1000
     })
   }
@@ -64,7 +64,25 @@ export class MessageService {
   }
 
   failedToRemove() {
-    this.toastr.success("Failed to remove user", undefined, {
+    this.toastr.error("Failed to remove user", undefined, {
+      timeOut:1000
+    })
+  }
+
+  hotelNameUpdated() {
+    this.toastr.success("Hotel name updated successfully", undefined, {
+      timeOut:1000
+    })
+  }
+
+  hotelRemoved() {
+    this.toastr.success("hotel removed successfully", undefined, {
+      timeOut:1000
+    })
+  }
+
+  failedToRemoveHotel() {
+    this.toastr.error("Failed to remove hotel", undefined, {
       timeOut:1000
     })
   }

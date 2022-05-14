@@ -1,0 +1,50 @@
+<div class="component-wrapper">
+    <div class="tab">
+        <input type="text" placeholder="  Search for hotels here" class="searchbox"> 
+    </div>
+    <div class="body-section">
+        <div class="user-content-wrapper" >
+            <div class="newUserWrapper"><button (click)="openForm()">Add new hotel</button></div>
+            <hr>
+            <div class="user-data-wrapper" *ngFor="let hotel of hotels; let i = index">
+                <div class="hotel"><input type="text" id={{hotel.hotelId}} disabled value={{hotel.hotelName}} required></div>
+                <div class="hotel"><input type="text"  disabled value={{hotel.categoryType}} required></div>
+                <div  class="editHotel"><button  (click)="editHotel(hotel.hotelId,i)"><img src="../../../../assets/images/edit.png">Edit</button></div>
+                <div  class="saveHotel"><button (click)="saveHotel(hotel.hotelName,hotel.categoryId,hotel.categoryType,hotel.hotelImage,hotel.hotelId,i)"><img src="../../../../assets/images/save.png">Save</button></div>
+                <div class="deleteHotel"><button (click)="deleteHotel(hotel.hotelId,i)"><img src="../../../../assets/images/delete.png">Delete</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="newHotelForm" id="newHotel">
+        <form class="form" [formGroup]="newHotelForm" (submit)="addNewHotel()"> 
+            <span style="position:absolute" (click)="closeForm()"><img src="../../../../assets/images/remove.png"></span>
+            <div style="text-align: center;">Add new restaurant details</div>
+
+            <div>
+                <label class="form-label">
+                    Hotel Name
+                </label>
+                <input formControlName="hotelName" class="form-input form-control" type="text" placeholder="Enter your hotel name here">
+            </div>
+            <div>
+                <label class="form-label">
+                    Select hotel category
+                </label>
+                <select formControlName="hotelCategory" class="form-input form-control">
+                    <option *ngFor="let category of categories">{{category.categoryName}}</option>
+                </select>
+            </div>
+            
+            <div>
+                <label class="form-label">
+                    Add image
+                </label>
+                <input  formControlName="hotelImage" class="form-input form-control" type="text" placeholder="provide a link to the image">
+            </div>
+
+            <div class="submit-button">
+                <button (click)="addNewHotel()">Add hotel</button>
+            </div>
+        </form>
+    </div>
+</div>

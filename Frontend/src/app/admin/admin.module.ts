@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
-import { MUsersComponent } from './components/m-users/m-users.component';
+import { MUsersComponent } from './components/mUsers/mUsers.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MhotelsComponent } from './components/mhotels/mhotels.component';
 
 
 
@@ -12,11 +14,13 @@ import { MUsersComponent } from './components/m-users/m-users.component';
     
   
     AdminComponent,
-            MUsersComponent
+            MUsersComponent,
+            MhotelsComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule { }

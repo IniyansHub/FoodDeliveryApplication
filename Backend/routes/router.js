@@ -41,8 +41,8 @@ router.post('/signup', async (req, res) => {
         return res.status(409).json({ "message": "User with this email exists already!" });
     } else {
         const hashedPassword = await bcrypt.hash(password, 10);
-        await user.create({ username: username, password: hashedPassword }); 
-        return res.status(201).json({ message: "Registered Successfully"});
+        const createdUser = await user.create({ username: username, password: hashedPassword }); 
+        return res.status(201).json(createdUser);
     }
 })
 
