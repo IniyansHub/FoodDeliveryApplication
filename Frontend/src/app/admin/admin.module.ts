@@ -6,21 +6,10 @@ import { AdminComponent } from './admin.component';
 import { MUsersComponent } from './components/mUsers/mUsers.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MhotelsComponent } from './components/mhotels/mhotels.component';
-
-
+import { MmenusComponent } from './components/mmenus/mmenus.component';
 
 @NgModule({
-  declarations: [
-    
-  
-    AdminComponent,
-            MUsersComponent,
-            MhotelsComponent
-  ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    ReactiveFormsModule
-  ]
+  declarations: [AdminComponent, MUsersComponent, MhotelsComponent, MmenusComponent],
+  imports: [CommonModule, AdminRoutingModule, ReactiveFormsModule],
 })
-export class AdminModule { }
+export class AdminModule {}

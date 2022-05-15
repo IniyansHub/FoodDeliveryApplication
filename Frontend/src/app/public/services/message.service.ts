@@ -99,4 +99,16 @@ export class MessageService {
     })
   }
 
+  menuUpdatedSuccessfully() {
+    this.toastr.success("Menu updation successfull!", undefined, {
+      timeOut:1000
+    });
+  }
+
+  failedToUpdateMenu() {
+    this.toastr.error("Failed to  update menu", undefined, {
+      timeOut:1000
+    })
+  }
+
 }

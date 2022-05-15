@@ -40,6 +40,14 @@ export class AdminDataService {
     return this.http.delete(this.baseUrl + "deletehotel/" + id);
   }
 
+  fetchMenusBasedOnHotelId(id:number) {
+    return this.http.get(this.baseUrl + "getmenu/" + id);
+  }
+
+  updateRestaurantMenuBasedOnMenuId(menuId:number,dishName:string,dishPrice:number) {
+    return this.http.put(this.baseUrl + "updatemenu", {menuId:menuId,dish:dishName,price:dishPrice});
+  }
+
   constructor(
     private http: HttpClient
   ) { }

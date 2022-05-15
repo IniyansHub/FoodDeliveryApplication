@@ -1,0 +1,72 @@
+<div class="component-wrapper">
+    <div class="tab">
+        <input type="text" placeholder="  Search for menu here" class="searchbox">
+    </div>
+    <div class="body-section">
+        <div class="user-content-wrapper">
+            <div class="header1">
+                <div class="newUserWrapper"><button (click)="openForm()">Add new dish </button></div>
+                <div class="selectHotel">
+                    <select (change)="onHotelSelect($event)">
+                        <option id="option1">-----Select the restaurant here-----</option>
+                        <option class="remainingOptions" *ngFor="let hotel of hotels" value="{{hotel.hotelId}}">{{hotel.hotelName}}</option>
+                    </select>
+                </div>
+            </div>
+            <hr>
+            <div class="user-data-heading">
+                <div class="menu">Dish Name</div>
+                <div class="menu">Dish price</div>
+            </div>
+            <div class="user-data-wrapper-scroll">
+                <div class="user-data-wrapper" *ngFor="let menu of menus; let i = index" >
+                    <div class="menu"><input type="text" id="{{menu.menuId}}"  value="{{menu.dishes}}" disabled required>
+                    </div>
+                    <div class="menu"><input type="number" id="{{menu.menuId*0.5}}"  value="{{menu.price}}" disabled required></div>
+                    <div class="editHotel"><button (click)="editMenu(menu.menuId,i)"><img
+                                src="../../../../assets/images/edit.png">Edit</button></div>
+                    <div class="saveHotel"><button (click)="saveMenu(menu.menuId,menu.dishes,menu.price,i)"><img
+                                src="../../../../assets/images/save.png">Save</button></div>
+                    <div class="deleteHotel"><button (click)="deleteMenu()"><img
+                                src="../../../../assets/images/delete.png">Delete</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="newHotelForm" id="newHotel">
+        <form class="form" [formGroup]="newHotelForm">
+            <span style="position:absolute" (click)="closeForm()"><img
+                    src="../../../../assets/images/remove.png"></span>
+            <div style="text-align: center;">Add new restaurant details</div>
+
+            <div>
+                <label class="form-label">
+                    Hotel Name
+                </label>
+                <input formControlName="hotelName" class="form-input form-control" type="text"
+                    placeholder="Enter your hotel name here">
+            </div>
+            <div>
+                <label class="form-label">
+                    Select hotel category
+                </label>
+                <select formControlName="hotelCategory" class="form-input form-control" id="categoryId">
+                    <option value="" selected="selected">--Please select category--</option>
+                    <option></option>
+                </select>
+            </div>
+
+            <div>
+                <label class="form-label">
+                    Add image
+                </label>
+                <input formControlName="hotelImage" class="form-input form-control" type="text"
+                    placeholder="provide a link to the image">
+            </div>
+
+            <div class="submit-button">
+                <button>Add hotel</button>
+            </div>
+        </form>
+    </div>
+</div>

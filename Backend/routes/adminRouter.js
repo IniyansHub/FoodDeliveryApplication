@@ -143,6 +143,19 @@ adminRouter.delete('/deletehotel/:id', passport.authenticate('accesstoken', { se
 //routes for hotels ends
 
 //routes for menu starts
+
+adminRouter.get('/getmenu/:id', passport.authenticate('accesstoken', { session: false }), async (req, res) => {
+
+    if (req.params.id == null || req.params.id == undefined){
+        return res.status(400).json({"Message":"Provide the hotel Id to fetch the menus"})
+    }
+    
+    await menu.findAll({ where:{hotelId:req.params.id} })
+    .then(record=>{return res.status(200).json(record)})
+    .catch(err => {return res.status(404).json({ "Message": "Unable to fetch the menu data" })})
+
+})
+
 adminRouter.post('/addmenu', passport.authenticate('accesstoken', { session: false }), async (req, res) => {
     const { hotelId, hotelName, dish, price } = req.body;
 
@@ -167,7 +180,7 @@ adminRouter.put('/updatemenu', passport.authenticate('accesstoken', { session: f
         return res.status(400).json({"Message":"Provide all the data to update a menu record"})
     }
 
-    const isMenuExists = (await menu.findOne({ where: { dishes: dish } })) ? true : false;
+    const isMenuExists = (await menu.findOne({ where: { menuId: menuId } })) ? true : false;
 
     if (isMenuExists) {
         

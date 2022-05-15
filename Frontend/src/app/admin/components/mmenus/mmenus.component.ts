@@ -1,29 +1,38 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ɵflushModuleScopingQueueAsMuchAsPossible } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MessageService } from 'src/app/public/services/message.service';
 import { AdminDataService } from '../../services/admin-data.service';
 
 @Component({
-  selector: 'app-mhotels',
-  templateUrl: './mhotels.component.html',
-  styleUrls: ['./mhotels.component.css']
+  selector: 'app-mmenus',
+  templateUrl: './mmenus.component.html',
+  styleUrls: ['./mmenus.component.css']
 })
-export class MhotelsComponent implements OnInit {
-  
-  categories: any;
-  hotels: any;
+export class MmenusComponent implements OnInit {
 
   constructor(
     private adminDataService: AdminDataService,
     private messageService: MessageService
   ) { }
 
+  menus: any;
+  hotels: any;
+
   newHotelForm = new FormGroup({
     hotelName: new FormControl('', Validators.required),
     hotelCategory: new FormControl('', Validators.required),
     hotelImage:new FormControl('',Validators.required)
   });
+
+  onHotelSelect(event:any) {
+    this.adminDataService.fetchMenusBasedOnHotelId(event.target.value).subscribe(
+      (res) => {
+        this.menus = res
+        console.log(res)
+      }
+    )
+  }
 
   openForm() {
     let newUserForm = document.getElementById("newHotel") as HTMLDivElement || null;
@@ -63,12 +72,9 @@ export class MhotelsComponent implements OnInit {
     }
   }
 
-
-  editHotel(currentHotelId: any, index: any) {
-    
-    let hotelNameEditor = document.getElementById(currentHotelId) as HTMLInputElement || null;
-    
-    //console.log(hotelNameEditor)
+  editMenu(currentMenuId:any,index:any) {
+    let dishNameEditor = document.getElementById(currentMenuId) as HTMLInputElement || null;
+    let dishPriceEditor =  document.getElementById(""+currentMenuId*0.5) as HTMLInputElement || null
 
     document.getElementsByClassName("saveHotel")[index].setAttribute("style", "display:flex")
     
@@ -82,14 +88,16 @@ export class MhotelsComponent implements OnInit {
       }
     }
     
-    if (hotelNameEditor != null) {
+    if (dishNameEditor != null && dishPriceEditor!=null) {
 
-      hotelNameEditor.style.outline = "none"
-      hotelNameEditor.style.backgroundColor = "white";
-
-      hotelNameEditor.disabled = false;
-
-      hotelNameEditor.focus()
+      dishNameEditor.style.outline = "none"
+      dishPriceEditor.style.outline="none"
+      dishNameEditor.style.backgroundColor = "white";
+      dishPriceEditor.style.backgroundColor = "white";
+      dishNameEditor.disabled = false;
+      dishNameEditor.focus()
+      dishPriceEditor.disabled = false;
+      dishPriceEditor.focus()
 
     } else {
       console.log(null)
@@ -97,72 +105,61 @@ export class MhotelsComponent implements OnInit {
 
   }
 
-  saveHotel(hotelName:string,categoryId:number,categoryType:string,imageRef:any,currentHotelId:any,index:number) {
+  saveMenu(currentMenuId:any,dishName:string,dishPrice:number,index:number) {
+    let dishNameEditor = document.getElementById(currentMenuId) as HTMLInputElement || null;
+    let dishPriceEditor = document.getElementById("" + currentMenuId * 0.5) as HTMLInputElement || null;
 
-    let hotelNameEditor = document.getElementById(currentHotelId) as HTMLInputElement || null
-    
-    if (hotelName != hotelNameEditor.value) {
-      if(confirm("Are you sure to update "+hotelName+" to "+hotelNameEditor.value)) {
-        this.adminDataService.updateHotelName(currentHotelId,hotelNameEditor.value,categoryId,categoryType,imageRef).subscribe(
-          (res) => {
-            this.messageService.hotelNameUpdated();
-            this.hotels[index].hotelName=hotelNameEditor.value
+    if (dishNameEditor.value != dishName || parseInt(dishPriceEditor.value) != dishPrice) {
+      if (confirm("Are you sure to update the menu data ")) {
+        this.adminDataService.updateRestaurantMenuBasedOnMenuId(currentMenuId, dishNameEditor.value, parseInt(dishPriceEditor.value))
+          .subscribe(
+            (res) => {
+              this.messageService.menuUpdatedSuccessfully();
+              this.menus[index].dishes = dishNameEditor.value
+              this.menus[index].price = dishPriceEditor.value
+            },
+            (err)=> {
+              this.messageService.failedToUpdateMenu()
           }
         )
       } else {
-        hotelNameEditor.value=hotelName
+        dishNameEditor.value = dishName
+        dishPriceEditor.value =dishPrice.toString()
       }
     }
 
-    hotelNameEditor.style.outline = "none"
-    hotelNameEditor.style.backgroundColor="inherit"
-
     document.getElementsByClassName("saveHotel")[index].setAttribute("style", "display:none")
+    
     document.getElementsByClassName("editHotel")[index].setAttribute("style", "display:flex")
 
     for (let i = 0; i < document.getElementsByClassName("editHotel").length; i++){
-      if (i == index) continue
-      else{
+      if (i == index) continue;
+      else {
         (document.getElementsByClassName("editHotel")[i].children[0] as HTMLButtonElement).disabled = false;
         (document.getElementsByClassName("deleteHotel")[i].children[0] as HTMLButtonElement).disabled = false;
       }
     }
-    
-    if (hotelNameEditor != null) {
-      hotelNameEditor.disabled = true;
-      hotelNameEditor.focus()
-    }
+
+    dishNameEditor.style.outline = "none"
+    dishNameEditor.style.backgroundColor = "inherit"
+    dishNameEditor.disabled = true
+    dishNameEditor.focus()
+    dishPriceEditor.style.outline = "none"
+    dishPriceEditor.style.backgroundColor = "inherit"
+    dishPriceEditor.disabled = true
+    dishPriceEditor.focus()
+  }
+
+  deleteMenu() {
     
   }
 
-  deleteHotel(id:number,index: number) {
-    if (confirm("Click on 'ok' to confirm your deletion")) {
-      this.adminDataService.deleteHotel(id).subscribe(
-        (res) => {
-          this.hotels.splice(index,1)
-          this.messageService.hotelRemoved()
-        },
-        (err) => {
-          this.messageService.failedToRemoveHotel();
-        }
-      )
-    }
-  }
+
 
   ngOnInit(): void {
-    this.adminDataService.fetchCategories().subscribe(
-      (res) => {
-        console.log(res)
-        this.categories = res
-      }
-    )
-
     this.adminDataService.fetchAllHotels().subscribe(
-      (res) => {
-        this.hotels = res
-      }
+      (res)=>{this.hotels=res}
     )
-
   }
 
 }
