@@ -69,6 +69,12 @@ export class MessageService {
     })
   }
 
+  newHotelAdded() {
+    this.toastr.success("New Hotel addedd Successfully", undefined, {
+      timeOut:1000
+    })
+  }
+
   hotelNameUpdated() {
     this.toastr.success("Hotel name updated successfully", undefined, {
       timeOut:1000
@@ -84,6 +90,12 @@ export class MessageService {
   failedToRemoveHotel() {
     this.toastr.error("Failed to remove hotel", undefined, {
       timeOut:1000
+    })
+  }
+
+  hotelNameAlreadyExists() {
+    this.toastr.error("Restaurant with this name exists already", undefined, {
+      timeOut:2000
     })
   }
 

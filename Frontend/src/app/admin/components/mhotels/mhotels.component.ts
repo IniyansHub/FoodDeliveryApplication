@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'src/app/public/services/message.service';
@@ -34,28 +35,34 @@ export class MhotelsComponent implements OnInit {
   closeForm() {
     let newUserForm = document.getElementById("newHotel") as HTMLDivElement || null;
     if (newUserForm != null) {
+      this.newHotelForm.reset()
       newUserForm.style.display = "none"
     }
   }
 
   addNewHotel() {
-    console.log(this.newHotelForm.getRawValue().hotelCategory)
-    console.log(this.getCategoryId(this.newHotelForm.getRawValue().hotelCategory))
-    // this.adminDataService.addHotel(
-    //   this.newHotelForm.getRawValue().hotelName,
-    //   this.getCategoryId(),
-    //   this.newHotelForm.getRawValue().hotelCategory,
-    //   this.newHotelForm.getRawValue().hotelImage
+    const categorySelect = document.getElementById('categoryId') as HTMLSelectElement
+    if (categorySelect.selectedIndex != 0) {
+      this.adminDataService.addHotel(
+        this.newHotelForm.getRawValue().hotelName,
+        categorySelect.selectedIndex,
+        categorySelect.value,
+        this.newHotelForm.getRawValue().hotelImage
 
-    // )
+      ).subscribe(
+        (res) => {
+          this.messageService.newHotelAdded();
+          this.closeForm()
+        },
+        (err) => {
+          if (err instanceof HttpErrorResponse && err.status == 409){
+            return this.messageService.hotelNameAlreadyExists(); 
+          }
+        }
+      )
+    }
   }
 
-  getCategoryId(category: string) {
-    console.log(category)
-    this.categories.forEach((element: any) => {
-      if(category.localeCompare(element.categoryName))return element.categoryId
-    });
-  }
 
   editHotel(currentHotelId: any, index: any) {
     
@@ -101,7 +108,7 @@ export class MhotelsComponent implements OnInit {
         this.adminDataService.updateHotelName(currentHotelId,hotelNameEditor.value,categoryId,categoryType,imageRef).subscribe(
           (res) => {
             this.messageService.hotelNameUpdated();
-            // this.hotels[index]=hotelNameEditor.value
+            this.hotels[index].hotelName=hotelNameEditor.value
           }
         )
       } else {
@@ -134,8 +141,8 @@ export class MhotelsComponent implements OnInit {
     if (confirm("Click on 'ok' to confirm your deletion")) {
       this.adminDataService.deleteHotel(id).subscribe(
         (res) => {
-          this.messageService.hotelRemoved()
           this.hotels.splice(index,1)
+          this.messageService.hotelRemoved()
         },
         (err) => {
           this.messageService.failedToRemoveHotel();

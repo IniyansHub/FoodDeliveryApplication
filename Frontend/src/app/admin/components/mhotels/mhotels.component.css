@@ -25,10 +25,8 @@
     background-color: aliceblue;
     margin-top: 10px;
     width: 50vw;
-    height: 85vh;
     text-align: center;
     padding-top:30px;
-    overflow: scroll;
 
 }
 
@@ -47,6 +45,23 @@
     width: fit-content;
     padding: 10px;
     background-color: rgb(42, 224, 124);
+}
+
+.user-data-heading{
+    width:95%;
+    display: grid;
+    grid-template-columns:40% 20% 20% 20%;
+    margin-left: 20px;
+    font-weight: bolder;
+}
+
+.user-data-wrapper-scroll{
+    height: 67vh;
+    overflow: scroll;
+}
+
+.user-data-wrapper-scroll::-webkit-scrollbar{
+    display: none;
 }
 
 .user-data-wrapper{

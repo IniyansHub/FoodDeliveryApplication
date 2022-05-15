@@ -29,7 +29,7 @@ export class AdminDataService {
   }
 
   addHotel(newHotelName:string,categoryId:number,categoryType:string,imageRef:string) {
-    return this.http.put(this.baseUrl + "addhotel", {hotelName:newHotelName,categoryId:categoryId,categoryType:categoryType,imageRef:imageRef})
+    return this.http.post(this.baseUrl + "addhotel", {hotelName:newHotelName,categoryId:categoryId,categoryType:categoryType,imageRef:imageRef})
   }
 
   updateHotelName(id:number,newHotelName:string,categoryId:number,categoryType:string,imageRef:string) {

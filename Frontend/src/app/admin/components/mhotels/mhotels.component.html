@@ -6,12 +6,18 @@
         <div class="user-content-wrapper" >
             <div class="newUserWrapper"><button (click)="openForm()">Add new hotel</button></div>
             <hr>
-            <div class="user-data-wrapper" *ngFor="let hotel of hotels; let i = index">
-                <div class="hotel"><input type="text" id={{hotel.hotelId}} disabled value={{hotel.hotelName}} required></div>
-                <div class="hotel"><input type="text"  disabled value={{hotel.categoryType}} required></div>
-                <div  class="editHotel"><button  (click)="editHotel(hotel.hotelId,i)"><img src="../../../../assets/images/edit.png">Edit</button></div>
-                <div  class="saveHotel"><button (click)="saveHotel(hotel.hotelName,hotel.categoryId,hotel.categoryType,hotel.hotelImage,hotel.hotelId,i)"><img src="../../../../assets/images/save.png">Save</button></div>
-                <div class="deleteHotel"><button (click)="deleteHotel(hotel.hotelId,i)"><img src="../../../../assets/images/delete.png">Delete</button></div>
+            <div class="user-data-heading">
+                <div class="hotel">Restaurant Name</div>
+                <div class="hotel">Restaurant Type</div> 
+            </div>
+            <div class="user-data-wrapper-scroll">
+                <div class="user-data-wrapper" *ngFor="let hotel of hotels; let i = index">
+                    <div class="hotel"><input type="text" id={{hotel.hotelId}} disabled value={{hotel.hotelName}} required></div>
+                    <div class="hotel"><input type="text"  disabled value={{hotel.categoryType}} required></div>
+                    <div  class="editHotel"><button  (click)="editHotel(hotel.hotelId,i)"><img src="../../../../assets/images/edit.png">Edit</button></div>
+                    <div  class="saveHotel"><button (click)="saveHotel(hotel.hotelName,hotel.categoryId,hotel.categoryType,hotel.hotelImage,hotel.hotelId,i)"><img src="../../../../assets/images/save.png">Save</button></div>
+                    <div class="deleteHotel"><button (click)="deleteHotel(hotel.hotelId,i)"><img src="../../../../assets/images/delete.png">Delete</button></div>
+                </div>
             </div>
         </div>
     </div>
@@ -30,8 +36,9 @@
                 <label class="form-label">
                     Select hotel category
                 </label>
-                <select formControlName="hotelCategory" class="form-input form-control">
-                    <option *ngFor="let category of categories">{{category.categoryName}}</option>
+                <select formControlName="hotelCategory" class="form-input form-control" id="categoryId">
+                    <option value="" selected="selected">--Please select category--</option>
+                    <option *ngFor="let category of categories" [value]="category.categoryName">{{category.categoryName}}</option>
                 </select>
             </div>
             
