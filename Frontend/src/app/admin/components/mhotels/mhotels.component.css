@@ -22,7 +22,7 @@
 
 .user-content-wrapper{
     margin: 0 auto;
-    background-color: aliceblue;
+    background-color: rgb(235, 243, 250);
     margin-top: 10px;
     width: 50vw;
     text-align: center;
@@ -44,7 +44,7 @@
 .newUserWrapper button{
     width: fit-content;
     padding: 10px;
-    background-color: rgb(42, 224, 124);
+    background-color: rgb(51, 233, 133);
 }
 
 .user-data-heading{
@@ -69,8 +69,8 @@
     height: 50px;
     display: grid;
     grid-template-columns:40% 20% 20% 20%;
-    margin: 20px;
-    background-color: rgb(200, 226, 248);
+    margin: 10px 20px;
+    background-color: rgb(255, 255, 255);
     padding: 6px;
 }
 

@@ -29,6 +29,10 @@ export class MessageService {
     this.toastr.info("Please login to access the page")
   }
 
+  pleaseLoginAsAdmin() {
+    this.toastr.info("Please login as admin to access the page")
+  }
+
   invalidEmailPasswordMessage() {
     this.toastr.error("Invalid email or password")
   }
@@ -99,6 +103,10 @@ export class MessageService {
     })
   }
 
+  menuAddedSuccessfully() {
+    this.toastr.success("Menu created successfully") 
+  }
+
   menuUpdatedSuccessfully() {
     this.toastr.success("Menu updation successfull!", undefined, {
       timeOut:1000
@@ -109,6 +117,22 @@ export class MessageService {
     this.toastr.error("Failed to  update menu", undefined, {
       timeOut:1000
     })
+  }
+
+  menuRemovedSuccessfully() {
+    this.toastr.success("Menu removed successfully")
+  }
+
+  menuNameExistsAlready() {
+    this.toastr.error("Menu name exists already")
+  }
+
+  provideAllDetails() {
+    this.toastr.warning("Please provide all the details to create a record")
+  }
+
+  unableToCreateMenu() {
+    this.toastr.error("Unable to add new menu to your restaurant")
   }
 
 }

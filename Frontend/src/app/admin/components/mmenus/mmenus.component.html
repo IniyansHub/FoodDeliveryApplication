@@ -8,7 +8,7 @@
                 <div class="newUserWrapper"><button (click)="openForm()">Add new dish </button></div>
                 <div class="selectHotel">
                     <select (change)="onHotelSelect($event)">
-                        <option id="option1">-----Select the restaurant here-----</option>
+                        <option id="option1" value="0">-----Select the restaurant here-----</option>
                         <option class="remainingOptions" *ngFor="let hotel of hotels" value="{{hotel.hotelId}}">{{hotel.hotelName}}</option>
                     </select>
                 </div>
@@ -27,45 +27,40 @@
                                 src="../../../../assets/images/edit.png">Edit</button></div>
                     <div class="saveHotel"><button (click)="saveMenu(menu.menuId,menu.dishes,menu.price,i)"><img
                                 src="../../../../assets/images/save.png">Save</button></div>
-                    <div class="deleteHotel"><button (click)="deleteMenu()"><img
+                    <div class="deleteHotel"><button (click)="deleteMenu(menu.menuId,i)"><img
                                 src="../../../../assets/images/delete.png">Delete</button></div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="newHotelForm" id="newHotel">
-        <form class="form" [formGroup]="newHotelForm">
+    <div class="newMenuForm" id="newMenu">
+        <form class="form" [formGroup]="menuFormData">
             <span style="position:absolute" (click)="closeForm()"><img
                     src="../../../../assets/images/remove.png"></span>
-            <div style="text-align: center;">Add new restaurant details</div>
+            <div style="text-align: center;">Add new menu details</div>
 
             <div>
                 <label class="form-label">
-                    Hotel Name
+                    Dish Name
                 </label>
-                <input formControlName="hotelName" class="form-input form-control" type="text"
-                    placeholder="Enter your hotel name here">
+                <input formControlName="dishName" class="form-input form-control" type="text"
+                    placeholder="Enter dish name here">
             </div>
             <div>
                 <label class="form-label">
-                    Select hotel category
+                    Dish Price
                 </label>
-                <select formControlName="hotelCategory" class="form-input form-control" id="categoryId">
-                    <option value="" selected="selected">--Please select category--</option>
-                    <option></option>
+                <input formControlName="dishPrice" class="form-input form-control" type="number" 
+                placeholder="Enter dish price here">
+            </div>
+            <div class="selectHotel-form" >
+                <select class="form-input form-control" formControlName="hotelId">
+                    <option id="option1" value="0">-----Select the restaurant here-----</option>
+                    <option  class="remainingOptions" *ngFor="let hotel of hotels" value="{{hotel.hotelId}}">{{hotel.hotelName}}</option>
                 </select>
             </div>
-
-            <div>
-                <label class="form-label">
-                    Add image
-                </label>
-                <input formControlName="hotelImage" class="form-input form-control" type="text"
-                    placeholder="provide a link to the image">
-            </div>
-
             <div class="submit-button">
-                <button>Add hotel</button>
+                <button (click)="addNewMenu()">Add Dish</button>
             </div>
         </form>
     </div>

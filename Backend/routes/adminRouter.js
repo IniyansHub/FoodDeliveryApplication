@@ -157,19 +157,25 @@ adminRouter.get('/getmenu/:id', passport.authenticate('accesstoken', { session: 
 })
 
 adminRouter.post('/addmenu', passport.authenticate('accesstoken', { session: false }), async (req, res) => {
-    const { hotelId, hotelName, dish, price } = req.body;
 
-    if (hotelName == undefined || hotelId == undefined || dish == undefined || price == undefined){
+    const { hotelId, dish, price } = req.body;
+
+    if (hotelId == undefined || dish == undefined || price == undefined || hotelId==" " || dish==" " || price==" "){
         return res.status(400).json({"Message":"Provide all the data to create a menu record"})
     }
 
     const isMenuExists = (await menu.findOne({ where: { dishes: dish } })) ? true : false;
 
+    const hotelName = (await hotel.findOne({where:{hotelId:hotelId}})).hotelName
+
     if (isMenuExists) return res.status(409).json({ "Message": "Menu already exists in your list" })
     
-    await menu.create({ hotelId: hotelId, hotelName: hotelName, dishes: dish, price: price })
+    await menu.create({ hotelId: hotelId,hotelName:hotelName,dishes: dish, price: price })
     .then(record=>{return res.status(201).json({"Message":"New menu addedd successfully"})})
-    .catch(err => {return res.status(422).json({ "Message": "Unable to create a new record for the menu table" })})
+        .catch(err => {
+            console.log(err)
+            return res.status(422).json({ "Message": "Unable to create a new record for the menu table" })
+        })
 
 })
 

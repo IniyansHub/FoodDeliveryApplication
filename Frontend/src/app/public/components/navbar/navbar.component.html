@@ -13,14 +13,14 @@
             <li><a routerLink="signup" routerLinkActive="active">Signup</a></li>
         </div>
         <div class="menu" *ngIf="this.authService.isUserLoggedIn() && !this.authService.isAdmin()" >
-            <li><a routerLink="location" routerLinkActive="active">Select Delivery Address</a></li>
+            <!-- <li><a routerLink="location" routerLinkActive="active">Select Delivery Address</a></li> -->
             <li><a routerLink="category" routerLinkActive="active">Category</a></li>
             <li><a routerLink="restaurants" routerLinkActive="active">Restaurants</a></li>
             <li><a (click)="logout()" routerLinkActive="active">Logout</a></li>
         </div>
         <div class="menu" *ngIf="this.authService.isUserLoggedIn() && this.authService.isAdmin()" >
             <li><a routerLink="../admin" routerLinkActive="active">AdminDashboard</a></li>
-            <li><a routerLink="location" routerLinkActive="active">Select Delivery Address</a></li>
+            <!-- <li><a routerLink="location" routerLinkActive="active">Select Delivery Address</a></li> -->
             <li><a routerLink="category" routerLinkActive="active">Category</a></li>
             <li><a routerLink="restaurants" routerLinkActive="active">Restaurants</a></li>
             <li><a (click)="logout()" routerLinkActive="active">Logout</a></li>

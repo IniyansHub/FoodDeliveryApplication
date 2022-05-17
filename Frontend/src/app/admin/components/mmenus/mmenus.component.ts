@@ -19,57 +19,54 @@ export class MmenusComponent implements OnInit {
   menus: any;
   hotels: any;
 
-  newHotelForm = new FormGroup({
-    hotelName: new FormControl('', Validators.required),
-    hotelCategory: new FormControl('', Validators.required),
-    hotelImage:new FormControl('',Validators.required)
+  menuFormData = new FormGroup({
+    dishName: new FormControl('', Validators.required),
+    dishPrice: new FormControl('', Validators.required),
+    hotelId:new FormControl('',Validators.required)
   });
 
   onHotelSelect(event:any) {
     this.adminDataService.fetchMenusBasedOnHotelId(event.target.value).subscribe(
       (res) => {
         this.menus = res
-        console.log(res)
       }
     )
   }
 
   openForm() {
-    let newUserForm = document.getElementById("newHotel") as HTMLDivElement || null;
-    if (newUserForm != null) {
-      newUserForm.style.display = "block"
+    let newMenuForm = document.getElementById("newMenu") as HTMLDivElement || null;
+    if (newMenuForm != null) {
+      newMenuForm.style.display = "block"
     }
   }
 
   closeForm() {
-    let newUserForm = document.getElementById("newHotel") as HTMLDivElement || null;
-    if (newUserForm != null) {
-      this.newHotelForm.reset()
-      newUserForm.style.display = "none"
+    let newMenuForm = document.getElementById("newMenu") as HTMLDivElement || null;
+    if (newMenuForm != null) {
+      newMenuForm.style.display = "none"
     }
   }
 
-  addNewHotel() {
-    const categorySelect = document.getElementById('categoryId') as HTMLSelectElement
-    if (categorySelect.selectedIndex != 0) {
-      this.adminDataService.addHotel(
-        this.newHotelForm.getRawValue().hotelName,
-        categorySelect.selectedIndex,
-        categorySelect.value,
-        this.newHotelForm.getRawValue().hotelImage
-
-      ).subscribe(
+  addNewMenu() {
+    const id = parseInt(this.menuFormData.getRawValue().hotelId)
+    const dish = this.menuFormData.getRawValue().dishName
+    const price = parseInt(this.menuFormData.getRawValue().dishPrice)
+    this.adminDataService.addMenuToTheHotelBasedOnHotelId(id, dish, price)
+      .subscribe(
         (res) => {
-          this.messageService.newHotelAdded();
+          this.messageService.menuAddedSuccessfully();
           this.closeForm()
         },
         (err) => {
-          if (err instanceof HttpErrorResponse && err.status == 409){
-            return this.messageService.hotelNameAlreadyExists(); 
+          if (err.status == 400) {
+            this.messageService.provideAllDetails()
+          } else if (err.status == 409) {
+            this.messageService.menuNameExistsAlready()
+          } else {
+            this.messageService.unableToCreateMenu()
           }
         }
-      )
-    }
+    )
   }
 
   editMenu(currentMenuId:any,index:any) {
@@ -150,8 +147,19 @@ export class MmenusComponent implements OnInit {
     dishPriceEditor.focus()
   }
 
-  deleteMenu() {
-    
+  deleteMenu(id:number,index:number) {
+    this.adminDataService.deleteMenuBasedOnMenuId(id)
+      .subscribe(
+        (res) => {
+          if (confirm("Click on 'OK' to confirm your deletion")) {
+            this.messageService.menuRemovedSuccessfully();
+            this.menus.splice(index,1)
+          } 
+         },
+        (err) => { 
+          this.messageService.failedToRemove()
+        }
+    )
   }
 
 

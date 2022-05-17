@@ -43,12 +43,11 @@ export class MhotelsComponent implements OnInit {
   addNewHotel() {
     const categorySelect = document.getElementById('categoryId') as HTMLSelectElement
     if (categorySelect.selectedIndex != 0) {
-      this.adminDataService.addHotel(
+    this.adminDataService.addHotel(
         this.newHotelForm.getRawValue().hotelName,
         categorySelect.selectedIndex,
         categorySelect.value,
         this.newHotelForm.getRawValue().hotelImage
-
       ).subscribe(
         (res) => {
           this.messageService.newHotelAdded();
@@ -67,8 +66,6 @@ export class MhotelsComponent implements OnInit {
   editHotel(currentHotelId: any, index: any) {
     
     let hotelNameEditor = document.getElementById(currentHotelId) as HTMLInputElement || null;
-    
-    //console.log(hotelNameEditor)
 
     document.getElementsByClassName("saveHotel")[index].setAttribute("style", "display:flex")
     
@@ -137,10 +134,10 @@ export class MhotelsComponent implements OnInit {
 
   deleteHotel(id:number,index: number) {
     if (confirm("Click on 'ok' to confirm your deletion")) {
-      this.adminDataService.deleteHotel(id).subscribe(
+        this.adminDataService.deleteHotel(id).subscribe(
         (res) => {
-          this.hotels.splice(index,1)
           this.messageService.hotelRemoved()
+          this.hotels.splice(index,1)
         },
         (err) => {
           this.messageService.failedToRemoveHotel();
@@ -152,7 +149,6 @@ export class MhotelsComponent implements OnInit {
   ngOnInit(): void {
     this.adminDataService.fetchCategories().subscribe(
       (res) => {
-        console.log(res)
         this.categories = res
       }
     )

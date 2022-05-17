@@ -143,7 +143,7 @@ export class MUsersComponent implements OnInit {
   }
 
   deleteUser(id: number, index: number) {
-    if (confirm("Click on 'ok' to confirm your deletion")) {
+    if (confirm("Click on 'OK' to confirm your deletion")) {
       this.adminDataService.deleteUser(id).subscribe(
         (res) => {
           this.messageService.userRemoved()

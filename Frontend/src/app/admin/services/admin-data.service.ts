@@ -40,12 +40,20 @@ export class AdminDataService {
     return this.http.delete(this.baseUrl + "deletehotel/" + id);
   }
 
+  addMenuToTheHotelBasedOnHotelId(hotelId:number,dishName:string,dishPrice:number) {
+    return this.http.post(this.baseUrl + "addmenu", {hotelId:hotelId,dish:dishName,price:dishPrice})
+  }
+
   fetchMenusBasedOnHotelId(id:number) {
     return this.http.get(this.baseUrl + "getmenu/" + id);
   }
 
   updateRestaurantMenuBasedOnMenuId(menuId:number,dishName:string,dishPrice:number) {
     return this.http.put(this.baseUrl + "updatemenu", {menuId:menuId,dish:dishName,price:dishPrice});
+  }
+
+  deleteMenuBasedOnMenuId(menuId:number) {
+    return this.http.delete(this.baseUrl+"deletemenu/"+menuId)
   }
 
   constructor(

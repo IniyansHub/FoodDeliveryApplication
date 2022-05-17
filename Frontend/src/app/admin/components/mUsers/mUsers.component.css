@@ -23,7 +23,7 @@
 
 .user-content-wrapper{
     margin: 0 auto;
-    background-color: aliceblue;
+    background-color: rgb(231, 236, 240);
     margin-top: 10px;
     width: 50vw;
     height: 85vh;
@@ -55,9 +55,19 @@
     height: 50px;
     display: grid;
     grid-template-columns:40% 20% 20% 20%;
-    margin: 20px;
-    background-color: rgb(200, 226, 248);
+    margin: 0 auto;
+    margin-bottom: 5px;
+    background-color: rgb(255, 255, 255);
     padding: 6px;
+}
+
+.user-data-wrapper-scroll{
+    height: 67vh;
+    overflow: scroll;
+}
+
+.user-data-wrapper-scroll::-webkit-scrollbar{
+    display: none;
 }
 
 .email{

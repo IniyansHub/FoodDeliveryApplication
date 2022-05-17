@@ -30,7 +30,9 @@ export class DishesComponent implements OnInit {
     
   }
 
-
+  placeOrder() {
+    console.log("working!")
+  }
 
   removeDish(dishIndex: any) {
 

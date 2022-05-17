@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         this.tokenService.saveRefreshToken(res.refresh_token)
         localStorage.setItem("isAdmin",res.isAdmin)
         this.messageService.loginSuccess()
-        this.router.navigate(['private/location'])
+        this.router.navigate(['private/category'])
       }, (err) => {
           this.messageService.invalidEmailPasswordMessage()
       })

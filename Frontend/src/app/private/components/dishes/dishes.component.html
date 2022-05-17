@@ -1,9 +1,12 @@
 <div class="dishes-component-wrapper">
 
     <div class="ad-banner">
-
+        <img src="../../../../assets/images/slider4.jpg">
+        <img src="../../../../assets/images/slider2.jpg">
+        <img src="../../../../assets/images/slider1.jpg">
+        <img src="../../../../assets/images/slider3.avif">
     </div>
-
+    
     <div class="sidebar-left">
 
     </div>
@@ -33,9 +36,11 @@
                 <div class="remove-dish" (click)="removeDish(i)"><img src="../../../../assets/images/remove.png"></div>
             </div>
         </div>
-        <div class="total-pay">
-               <span style="font-size:0.6em; color:black;font-weight: bold;">Total Cost:&nbsp;&nbsp;</span> &#8377;{{totalPrice}}
+        <div class="place-order">
+               Place Order
+        </div>
+        <div class="total-pay" (click)="placeOrder()">
+            <span style="font-size:0.6em; color:black;font-weight: bold;">Total Cost:&nbsp;&nbsp;</span> &#8377;{{totalPrice}}
         </div>
     </div>
 </div>
-
