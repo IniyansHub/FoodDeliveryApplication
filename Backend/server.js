@@ -10,6 +10,11 @@ app.use(cors())
 
 app.use('/api', router)
 app.use('/admin',adminRouter)
+
+
+app.get("/", (req, res) => {
+    res.send("Welcome to initial route");
+})
     
 
 app.listen(3000,()=>{
