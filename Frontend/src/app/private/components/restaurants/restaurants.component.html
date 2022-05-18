@@ -1,12 +1,12 @@
 <div class="restaurant-component-container">
     <div class="searchbox"> 
-        <input type="text" [placeholder]="placeholder">
+        <input type="search" [placeholder]="placeholder" [(ngModel)]="searchTerm">
     </div>
     <div class="sidebar-left">
         
     </div>
     <div class="hotels-wrapper">
-        <div class="hotel-card" *ngFor="let hotel of hotels" (click)="getHotelId(hotel.hotelId)">
+        <div class="hotel-card" *ngFor="let hotel of hotels | titlefilter:searchTerm" (click)="getHotelId(hotel.hotelId)">
             <div class="hotel-image-section">
                 <img [src]="hotel.hotelImage">
             </div>

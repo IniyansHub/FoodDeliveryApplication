@@ -1,6 +1,6 @@
 <div class="component-wrapper">
     <div class="tab">
-        <input type="text" placeholder="  Search for menu here" class="searchbox">
+        <input type="search" placeholder="  Search for menu here" class="searchbox" [(ngModel)]="searchTerm">
     </div>
     <div class="body-section">
         <div class="user-content-wrapper">
@@ -19,7 +19,7 @@
                 <div class="menu">Dish price</div>
             </div>
             <div class="user-data-wrapper-scroll">
-                <div class="user-data-wrapper" *ngFor="let menu of menus; let i = index" >
+                <div class="user-data-wrapper" *ngFor="let menu of menus | menufilter:searchTerm; let i = index" >
                     <div class="menu"><input type="text" id="{{menu.menuId}}"  value="{{menu.dishes}}" disabled required>
                     </div>
                     <div class="menu"><input type="number" id="{{menu.menuId*0.5}}"  value="{{menu.price}}" disabled required></div>

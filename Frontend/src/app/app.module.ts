@@ -11,7 +11,7 @@ import { ToastrModule } from 'ngx-toastr'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { PrivateModule } from './private/private.module';
 import { AdminModule } from './admin/admin.module';
-
+import {AgmCoreModule} from '@agm/core'
 @NgModule({
   declarations: [
     AppComponent
@@ -32,7 +32,10 @@ import { AdminModule } from './admin/admin.module';
       progressBar: true,
       preventDuplicates:true
     }),
-    AdminModule
+    AdminModule,
+    AgmCoreModule.forRoot({
+      apiKey:""
+    })
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

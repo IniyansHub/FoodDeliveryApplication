@@ -13,6 +13,7 @@ export class MhotelsComponent implements OnInit {
   
   categories: any;
   hotels: any;
+  searchTerm:string=""
 
   constructor(
     private adminDataService: AdminDataService,

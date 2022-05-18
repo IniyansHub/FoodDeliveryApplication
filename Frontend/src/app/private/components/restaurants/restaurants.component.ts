@@ -13,6 +13,8 @@ export class RestaurantsComponent implements OnInit {
   placeholder = "Search for Restaurants";
 
   hotels!: any;
+
+  searchTerm: string="";
   
   getHotelId(id:string) {
     localStorage.setItem("hotelId", id);
@@ -20,11 +22,14 @@ export class RestaurantsComponent implements OnInit {
     
   }
 
+
+  
   
   constructor(
     private dataService: DataService,
     private authService: AuthService,
-    private router:Router
+    private router: Router
+    
   ) { 
     
   }

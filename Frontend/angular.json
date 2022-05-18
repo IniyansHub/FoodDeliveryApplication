@@ -56,14 +56,11 @@
             "styles": [
               "node_modules/ngx-toastr/toastr.css",
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.css",
-              "node_modules/slick-carousel/slick/slick.scss",  
-             "node_modules/slick-carousel/slick/slick-theme.scss"
+              "node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.js",
-              "node_modules/jquery/dist/jquery.min.js",  
-            "node_modules/slick-carousel/slick/slick.min.js"
+              "node_modules/jquery/dist/jquery.min.js"
             ]
           },
           "configurations": {

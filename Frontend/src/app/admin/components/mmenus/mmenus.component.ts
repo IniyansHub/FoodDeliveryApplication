@@ -18,6 +18,7 @@ export class MmenusComponent implements OnInit {
 
   menus: any;
   hotels: any;
+  searchTerm:string=""
 
   menuFormData = new FormGroup({
     dishName: new FormControl('', Validators.required),

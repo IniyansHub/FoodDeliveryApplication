@@ -8,11 +8,13 @@
     </div>
     
     <div class="sidebar-left">
-
+        <input type="search" [(ngModel)]="searchTerm" placeholder="search for a dish here">
+        <div class="bike"><img src="../../../../assets/images/foodDeliveryMan.png"></div>
+        <div class="road"></div>
     </div>
 
     <div class="menus-wrapper">
-        <div class="menu-card" *ngFor="let menu of menus">
+        <div class="menu-card" *ngFor="let menu of menus | menufilter:searchTerm">
             <div class="menu-name">{{menu.dishes}}</div>
             <div class="menu-price"> &#8377;{{menu.price}}</div>
             <div class="add-to-cart" (click)="addFood({dishName:menu.dishes,dishPrice:menu.price})">
@@ -36,7 +38,7 @@
                 <div class="remove-dish" (click)="removeDish(i)"><img src="../../../../assets/images/remove.png"></div>
             </div>
         </div>
-        <div class="place-order">
+        <div class="place-order" (click)="placeOrder()">
                Place Order
         </div>
         <div class="total-pay" (click)="placeOrder()">
@@ -44,3 +46,4 @@
         </div>
     </div>
 </div>
+ 

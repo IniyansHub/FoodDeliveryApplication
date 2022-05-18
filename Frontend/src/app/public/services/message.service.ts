@@ -135,4 +135,12 @@ export class MessageService {
     this.toastr.error("Unable to add new menu to your restaurant")
   }
 
+  dishAddedToCart() {
+    this.toastr.success("Dish added to the cart")
+  }
+
+  dishRemovedFromCart() {
+    this.toastr.warning("Dish removed from the cart")
+  }
+
 }

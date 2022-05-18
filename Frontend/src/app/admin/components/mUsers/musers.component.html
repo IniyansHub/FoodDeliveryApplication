@@ -1,12 +1,12 @@
 <div class="component-wrapper">
     <div class="tab">
-        <input type="text" placeholder="  Search for users here" class="searchbox"> 
+        <input type="search" placeholder="  Search for users here" class="searchbox" [(ngModel)]="userName" style="padding:8px;"> 
     </div>
     <div class="body-section">
         <div class="user-content-wrapper" >
             <div class="newUserWrapper"><button (click)="openForm()">Add new User</button></div>
             <hr>
-            <div class="user-data-wrapper" *ngFor="let user of users; let i = index">
+            <div class="user-data-wrapper" *ngFor="let user of users|userFilter:userName; let i = index">
                 <div class="email"><input type="email" id={{user.id}} disabled value={{user.username}} required></div>
                 <div class="markAsAdmin"><button (click)="markAsAdmin(user.id,user.username,i)">Mark as Admin</button></div>
                 <div  class="editUser"><button  (click)="editUser(user.id,i)"><img src="../../../../assets/images/edit.png">Edit</button></div>

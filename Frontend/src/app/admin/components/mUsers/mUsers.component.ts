@@ -14,6 +14,7 @@ export class MUsersComponent implements OnInit {
 
 
   emailEditor = "emailEditor";
+  userName:string=""
 
   users: any = [];
 

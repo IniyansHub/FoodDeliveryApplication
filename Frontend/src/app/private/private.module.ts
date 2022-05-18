@@ -8,10 +8,8 @@ import { SharedModule } from '../shared/shared.module';
 import { CategoryComponent } from './components/category/category.component';
 import { RestaurantsComponent } from './components/restaurants/restaurants.component';
 import { DishesComponent } from './components/dishes/dishes.component';
-
-
-
- 
+import { OrderComponent } from './components/order/order.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,12 +17,15 @@ import { DishesComponent } from './components/dishes/dishes.component';
     LocationsComponent,
     CategoryComponent,
     RestaurantsComponent,
-    DishesComponent 
+    DishesComponent,
+    OrderComponent
   ],
   imports: [
     CommonModule,
     PrivateRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PrivateModule { }

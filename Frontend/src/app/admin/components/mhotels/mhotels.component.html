@@ -1,6 +1,6 @@
 <div class="component-wrapper">
     <div class="tab">
-        <input type="text" placeholder="  Search for restaurants here" class="searchbox"> 
+        <input style="padding: 8px;" type="search" placeholder="  Search for restaurants here" class="searchbox" [(ngModel)]="searchTerm"> 
     </div>
     <div class="body-section">
         <div class="user-content-wrapper" >
@@ -11,7 +11,7 @@
                 <div class="hotel">Restaurant Type</div> 
             </div>
             <div class="user-data-wrapper-scroll">
-                <div class="user-data-wrapper" *ngFor="let hotel of hotels; let i = index;">
+                <div class="user-data-wrapper" *ngFor="let hotel of hotels | titlefilter:searchTerm; let i = index;">
                     <div class="hotel"><input type="text" id={{hotel.hotelId}} disabled value={{hotel.hotelName}} required></div>
                     <div class="hotel"><input type="text"  disabled value={{hotel.categoryType}} required></div>
                     <div  class="editHotel"><button  (click)="editHotel(hotel.hotelId,i)"><img src="../../../../assets/images/edit.png">Edit</button></div>

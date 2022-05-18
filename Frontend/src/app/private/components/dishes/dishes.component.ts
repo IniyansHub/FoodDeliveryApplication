@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { MessageService } from 'src/app/public/services/message.service';
 import { DataService } from '../../service/data.service';
 
 @Component({
@@ -9,6 +11,8 @@ import { DataService } from '../../service/data.service';
 export class DishesComponent implements OnInit {
 
   menus: any;
+
+  searchTerm: string="";
 
   parsedObject = JSON.parse('[' + localStorage.getItem("cartItem") + ']');
 
@@ -27,16 +31,18 @@ export class DishesComponent implements OnInit {
       this.totalPrice+=parseInt(foodData.dishPrice)
       localStorage.setItem("totalPrice",""+this.totalPrice)
     }
+
+    this.messageService.dishAddedToCart();
     
   }
 
   placeOrder() {
-    console.log("working!")
+    this.router.navigate(['private/order'])
   }
 
   removeDish(dishIndex: any) {
 
-    let allObject = JSON.parse('[' + localStorage.getItem("cartItem") + ']');//[{}]
+    let allObject = JSON.parse('[' + localStorage.getItem("cartItem") + ']');
 
     allObject.splice(dishIndex, 1);
 
@@ -60,12 +66,14 @@ export class DishesComponent implements OnInit {
 
     localStorage.setItem("totalPrice",""+this.totalPrice)
 
-
+  this.messageService.dishRemovedFromCart()
 
   }
 
   constructor(
-    private dataService:DataService
+    private dataService: DataService,
+    private router: Router,
+    private messageService:MessageService
   ) { }
 
   ngOnInit(): void {
