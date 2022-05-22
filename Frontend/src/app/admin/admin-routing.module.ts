@@ -9,7 +9,7 @@ import { MUsersComponent } from './components/mUsers/mUsers.component';
 
 const routes: Routes = [
   {
-    path: 'admin',
+    path: '',
     component: AdminComponent,canActivate:[AuthGuard,AdminGuard],
     children: [
       { path: 'users', component: MUsersComponent,canActivate:[AuthGuard,AdminGuard]},

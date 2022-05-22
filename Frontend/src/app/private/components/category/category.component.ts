@@ -31,7 +31,6 @@ export class CategoryComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.authService.authorizeUser().subscribe()
     this.dataService.fetchAllCategories().subscribe(
       (res)=>{this.categories=res}
     )

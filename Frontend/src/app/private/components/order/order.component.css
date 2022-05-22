@@ -1,0 +1,107 @@
+.location-component{
+    position: absolute;
+    width: 100%;
+}
+
+.close-location-form-icon{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: 61%;
+    top:11.5%;
+    filter: blur(1px);
+
+}
+
+.close-location-form-icon img{
+width:100%;
+height: 100%;
+}
+
+.location-form{
+    position: absolute;
+}
+
+.order-data{
+    background-color: white;
+    width: 40%;
+    display: grid;
+    grid-template-rows: auto auto auto auto auto auto;
+    padding: 10px;
+    margin: 20vh auto;
+    font-size: large;
+    display: none;
+    border-radius: 10px;
+}
+
+.mobile{
+    display: grid;
+    grid-template-columns:50% 50% ;
+    padding: 2px 0;
+}
+
+.address{
+    display: grid;
+    grid-template-columns:50% 50%;
+    padding: 10px 0;
+}
+
+.dish_header{
+    display: grid;
+    grid-template-columns:50% 50%;
+    font-weight: bold;
+}
+
+.ordered-food-wrapper{
+    width: 100%;
+    /* padding:10px 0; */
+}
+
+.ordered-food{
+    display: grid;
+    grid-template-columns:50% 50%;
+    padding: 3px 0;
+}
+
+.total-price-wrapper{
+    display: grid;
+    grid-template-columns:50% 50%;
+    padding: 0 0 10px 0;
+}
+
+.delivery-charge{
+    display: grid;
+    grid-template-columns:50% 50%;
+    padding: 10px 0px;
+}
+
+.confirm-order{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+}
+
+.confirm-order button{
+margin-right: 10px;
+width: 8em;
+height: 3em;
+border-radius: 5px;
+}
+
+.confirm{
+    border: none;
+    outline:none;
+    text-align: center;
+    background-color: green;
+    color: white;
+    padding: 10px;
+}
+
+.cancel{
+    border: none;
+    outline:none;
+    text-align: center;
+    background-color: red;
+    color: white;
+    padding: 10px;
+}

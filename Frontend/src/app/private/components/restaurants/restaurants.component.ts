@@ -36,8 +36,6 @@ export class RestaurantsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.authService.authorizeUser().subscribe()
-
     if (localStorage.getItem("categoryId")==null) {
       this.dataService.fetchAllHotels().subscribe((res) => {
         this.hotels=res

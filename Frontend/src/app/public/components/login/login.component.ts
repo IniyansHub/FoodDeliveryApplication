@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       .subscribe((res: any) => {
         this.tokenService.saveAccessToken(res.access_token)
         this.tokenService.saveRefreshToken(res.refresh_token)
-        localStorage.setItem("isAdmin",res.isAdmin)
+        localStorage.setItem("isAdmin", res.isAdmin)
         this.messageService.loginSuccess()
         this.router.navigate(['private/category'])
       }, (err) => {

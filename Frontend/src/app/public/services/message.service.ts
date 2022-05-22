@@ -143,4 +143,12 @@ export class MessageService {
     this.toastr.warning("Dish removed from the cart")
   }
 
+  provideLocationData() {
+    this.toastr.warning("please provie the location details")
+  }
+
+  locationSaved() {
+    this.toastr.success("Location saved successfully")
+  }
+
 }

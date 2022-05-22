@@ -1,28 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { GlobalUrl } from 'src/app/model/global-url';
 import { MessageService } from 'src/app/public/services/message.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = 'http://localhost:3000/api/';
+  baseUrl = GlobalUrl.url;
 
   authorizeUser() {
-    return this.http.get(`${this.baseUrl}authorize`)
+    return this.http.get(`${this.baseUrl}/api/authorize`)
   }
 
   loginUser(userdata: any) {
-    return this.http.post(`${this.baseUrl}login`, userdata)
+    return this.http.post(`${this.baseUrl}/api/login`, userdata)
   }
 
   signupUser(userdata: any) {
-    return this.http.post(`${this.baseUrl}signup`,userdata)
+    return this.http.post(`${this.baseUrl}/api/signup`,userdata)
   }
 
   logout():boolean {
-    this.http.delete(`${this.baseUrl}logout`)
+    this.http.delete(`${this.baseUrl}/api/logout`)
     localStorage.clear()
     return true
   }

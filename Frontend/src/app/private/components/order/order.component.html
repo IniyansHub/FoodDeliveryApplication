@@ -1,0 +1,49 @@
+<div id="location-form">
+    <app-locations class="location-component"></app-locations>
+    <span class="close-location-form-icon" (click)="closeForm(locationDetails)"><img src="../../../../assets/images/remove2.png"></span>
+</div>
+
+<div class="order-data" id="order-confirm-page">
+    <div class="mobile">
+        <div style="font-weight:bold;">
+            Mobile Number
+        </div>
+        <div>
+            {{locationDetails.mobileNumber}}
+        </div>
+    </div>
+    <hr>
+    <div class="address">
+        <div style="font-weight:bold;">
+            Address
+        </div>
+        <div>
+            {{locationDetails.address}}
+        </div>
+    </div>
+    <hr>
+    <div class="dish_header">
+        <div>Dishname</div>
+        <div>DishPrice</div>
+    </div>
+    <div class="ordered-food-wrapper">
+        <div *ngFor="let item of cart" class="ordered-food">
+            <div>{{item.dishName}}</div>
+            <div>{{item.dishPrice}}</div>
+        </div>
+        <div class="delivery-charge">
+            <div style="font-weight: bold;">Delivery Charge</div>
+            <div>+50</div>
+        </div>
+        <hr>
+        <div class="total-price-wrapper">
+            <div style="font-weight: bold;">Total Price</div>
+            <div>{{totalPrice+50}}</div>
+        </div>
+    </div>
+    
+    <div class="confirm-order">
+        <button class="confirm">Confirm Order</button>
+        <button class="cancel">Cancel</button>
+    </div>
+</div>

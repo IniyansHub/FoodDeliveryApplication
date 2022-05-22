@@ -50,7 +50,6 @@ export class DishesComponent implements OnInit {
 
     const removedDish = this.cart.splice(dishIndex, 1);
 
-    console.log(removedDish[0].dishPrice)
 
     allObject.forEach((element:any) => {
       if (localStorage.getItem("cartItem") == null) {
@@ -66,7 +65,7 @@ export class DishesComponent implements OnInit {
 
     localStorage.setItem("totalPrice",""+this.totalPrice)
 
-  this.messageService.dishRemovedFromCart()
+    this.messageService.dishRemovedFromCart()
 
   }
 
@@ -77,8 +76,6 @@ export class DishesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.parsedObject)
-    console.log(this.cart)
     this.dataService.fetchDishesBasedOnHotelId().subscribe((res) => {
       this.menus = res
     })
