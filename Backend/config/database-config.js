@@ -7,10 +7,11 @@ const db = new Sequelize(process.env.DB_NAME,process.env.DB_USER,process.env.DB_
 
     define:{
         timestamps:false,
-        freezeTableName: true
-    },
-    
+        freezeTableName: true,
+    }
 });
+
+
 
 module.exports=db;
 

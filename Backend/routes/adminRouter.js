@@ -33,7 +33,8 @@ adminRouter.put('/updateuser/:id', passport.authenticate('accesstoken', { sessio
         }
     ).then(msg => {
         if (msg == 1) res.status(200).json({ "Message": "Updation successfull" })
-        else res.status(400).json({"Message":`Cannot update user's email with id ${req.params.id}. Maybe user not found or req.body is empty`})
+        else res.status(400).json({ "Message": `Cannot update user's email with id ${req.params.id}. Maybe user not found or req.body is empty` })
+    
     }).catch(err=>{console.log(err)})
         
 });

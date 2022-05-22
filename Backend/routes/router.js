@@ -54,8 +54,6 @@ router.post('/login', async (req, res) => {
 
     const userFound = await user.findOne({ where: { username: username } });
 
-    console.log(userFound)
-
     if (userFound == null) {
         return res.status(400).send("Invalid email or password")
     }
@@ -85,21 +83,57 @@ router.post('/login', async (req, res) => {
                         }
                     })
 
-                return res.status(200).send({ access_token: access_token, refresh_token: refresh_token, isAdmin:userFound.isAdmin })
+                return res.status(200).send({
+                    access_token: access_token,
+                    refresh_token: refresh_token,
+                    isAdmin: userFound.isAdmin,
+                    userId:userFound.id
+                })
 
             }
         })
     }
 })
 
-router.post('/addlocation', passport.authenticate('accesstoken', { session: false }), async (req, res) => {
-    const addedLocation = await location.create({ userId: req.user.sub, location: req.body.location })
-    res.status(201).json({"message": "Location addedd successfully" + addedLocation });
+router.put('/addlocation', passport.authenticate('accesstoken', { session: false }), async (req, res) => {
+    const { mobile, address, landmark } = req.body;
+
+    await location.update(
+        {
+            userId: req.user.sub,
+            mobileNumber: mobile,
+            address: address,  
+            landmark: landmark
+  
+        },
+        {
+            where: {userId: req.user.sub}
+        }
+    )
+    .then(
+            async (result) => {
+                if (result== 1) res.status(200).json({ "Message": "Location updated successfully" })
+                else {
+                    await location.create({ userId: req.user.sub, mobileNumber: mobile, address: address, landmark: landmark })
+                        .then(created => {
+                            res.status(201).json({ "message": "Location addedd successfully!" });
+                        })
+                        .catch(err => {
+                            res.status(209).json({"Message":"No changes in data"}) 
+                        })
+                    
+                }
+            }
+        )
+    .catch(err => {
+        console.log(err)
+    })
+    
 })
 
 
 router.get('/getlocation', passport.authenticate('accesstoken', { session: false }), async (req, res) => {
-    const locations = await location.findAll({ where: { userId: req.user.sub } })
+    const locations = await location.findOne({ where: { userId: req.user.sub } })
     res.status(200).send(locations)
 })
 
