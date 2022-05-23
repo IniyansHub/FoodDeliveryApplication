@@ -43,11 +43,11 @@
 .sidebar-left{
 width: 100%;
 height: 78.5vh;
-background-color: whitesmoke;
+background-color: rgba(0, 0, 0, 0.664);
 }
 
 .hotels-wrapper{
-    background-color: whitesmoke;
+    background-color: rgba(0, 0, 0, 0.664);
     height: 78.5vh;
     overflow: scroll;
     -ms-overflow-style: none; 

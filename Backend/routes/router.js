@@ -5,6 +5,7 @@ const location = require('../models/location')
 const category = require('../models/category')
 const hotel = require('../models/hotel')
 const menu = require('../models/menu')
+const order = require('../models/order')
 const token_model = require('../models/token_model')
 const bcrypt = require('bcrypt')
 const cors = require('cors');
@@ -172,6 +173,31 @@ router.delete('/logout', passport.authenticate('accesstoken', { session: false }
     })
     res.status(200).json({"message":"Logged out successfully!"})
 })
+
+router.post('/addorder', passport.authenticate('accesstoken', { session: false }), async (req, res) => { 
+    const { orderId, mobile, address, foods, total } = req.body;
+    order.create({ orderId: orderId, mobile: mobile, address: address, foods: foods, totalPrice: total, userId: req.user.sub })
+        .then((result) => {
+            res.status(201).json({"Message":"order created successfully"})
+        }) 
+        .catch((err) => {
+            res.status(400).json({"Message":"Unable to create an order"})
+        })
+})
+
+router.get('/getorder', passport.authenticate('accesstoken', { session: false }), async (req, res) => { 
+
+    order.findAll({ where: { userId: req.user.sub } })
+        .then((result) => {
+            res.status(200).json(result)
+        })
+        .catch((err) => {
+            console.log(err)
+            res.status(404).json({"Message":"No record found"})
+        })
+})
+
+
 
 
 module.exports = router

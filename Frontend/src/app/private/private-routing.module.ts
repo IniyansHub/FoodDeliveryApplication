@@ -15,6 +15,7 @@ const routes: Routes = [{
     { path: 'category', component: CategoryComponent, canActivate: [AuthGuard] },
     { path: 'restaurants', component: RestaurantsComponent, canActivate: [AuthGuard] },
     { path: 'menus', component: DishesComponent, canActivate: [AuthGuard] },
+    { path: 'location', component: LocationsComponent, canActivate: [AuthGuard] },
     { path:'order',component:OrderComponent, canActivate:[AuthGuard] }
   ]
 }];

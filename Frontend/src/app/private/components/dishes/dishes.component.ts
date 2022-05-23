@@ -37,7 +37,7 @@ export class DishesComponent implements OnInit {
   }
 
   placeOrder() {
-    this.router.navigate(['private/order'])
+    this.router.navigate(['private/location'])
   }
 
   removeDish(dishIndex: any) {

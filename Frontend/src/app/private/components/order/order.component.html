@@ -1,9 +1,9 @@
-<div id="location-form">
-    <app-locations class="location-component"></app-locations>
-    <span class="close-location-form-icon" (click)="closeForm(locationDetails)"><img src="../../../../assets/images/remove2.png"></span>
-</div>
 
-<div class="order-data" id="order-confirm-page">
+<div class="order-data blink_me" id="order-confirm-page">
+    <div style="text-align:center;font-size:2em;margin-bottom: 10px;font-weight: bold;">
+        <span>ORDER NO. {{orderId}}</span>
+    </div>
+    <hr>
     <div class="mobile">
         <div style="font-weight:bold;">
             Mobile Number
@@ -43,7 +43,7 @@
     </div>
     
     <div class="confirm-order">
-        <button class="confirm">Confirm Order</button>
-        <button class="cancel">Cancel</button>
+        <button class="confirm" (click)="confirmOrder()">Confirm Order</button>
+        <button class="cancel" (click)="cancel()">Cancel</button>
     </div>
 </div>

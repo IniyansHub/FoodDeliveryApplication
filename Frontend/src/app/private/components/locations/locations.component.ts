@@ -1,10 +1,9 @@
 
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MessageService } from 'src/app/public/services/message.service';
 import { DataService } from '../../service/data.service';
-import { OrderComponent } from '../order/order.component';
 
 @Component({
   selector: 'app-locations',
@@ -15,7 +14,7 @@ export class LocationsComponent implements OnInit {
 
   location!: any;
 
-  locationType="Add location"
+  locationType="Add location";
   
   addressForm = new FormGroup({
     mobile: new FormControl('', Validators.required),
@@ -30,16 +29,16 @@ export class LocationsComponent implements OnInit {
       this.addressForm.getRawValue().landmark
     ).subscribe(
       (res) => {
-            let orderCmp = new OrderComponent(this.dataService, this.messageService);
-            this.messageService.locationSaved()
-            orderCmp.closeForm(location)
+        this.messageService.locationSaved()
+        this.router.navigate(['private/order'])
         }
     )
   }
 
   constructor(
     private dataService: DataService,
-    private messageService:MessageService
+    private messageService: MessageService,
+    private router:Router
   ) { }
   
   ngOnInit(): void {
@@ -47,7 +46,6 @@ export class LocationsComponent implements OnInit {
       (res) => {
         this.location = res
         if (location != null) {
-          this.locationType = "Save location"
           this.addressForm.patchValue({
             mobile: this.location.mobileNumber,
             address: this.location.address,

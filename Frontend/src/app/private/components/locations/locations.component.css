@@ -6,6 +6,25 @@
     margin-top:2%;
 }
 
+.close-location-form-icon{
+    z-index: 1;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: 61%;
+    top:11.5%;
+
+}
+
+.close-location-form-icon img{
+width:100%;
+height: 100%;
+}
+
+.location-form{
+    position: absolute;
+}
+
 .form{
     width: 25%;
     height: 50%;
@@ -51,15 +70,6 @@
 
 .form-input:focus{
     border-bottom: 2px solid orange;
-}
-
-.already-a-user{
-    text-align: center;
-}
-
-.already-a-user>span>a{
-    text-decoration: none;
-    color: white;
 }
 
 textarea{

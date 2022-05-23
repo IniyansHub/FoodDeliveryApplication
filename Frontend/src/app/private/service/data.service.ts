@@ -44,8 +44,18 @@ export class DataService {
     return this.http.get(this.baseUrl+"/api/getlocation")
   }
 
-  closeFormService() {
-    
+  addOrder(id:number,mobile:number,address:string,food:string,total:number) {
+    return this.http.post(this.baseUrl + '/api/addorder', {
+    orderId: id,
+    mobile:mobile,
+    address:address,
+    foods:food,
+    total:total
+    })
+  }
+
+  getOrder() {
+    return this.http.get(this.baseUrl+"/api/getorder")
   }
 
 }

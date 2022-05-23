@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { GlobalUrl } from 'src/app/model/global-url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminDataService {
 
-  baseUrl="http://localhost:3000/admin/"
+  baseUrl=GlobalUrl.url+"/admin/"
 
   fetchAllUsers() {
     return this.http.get(this.baseUrl+"users")

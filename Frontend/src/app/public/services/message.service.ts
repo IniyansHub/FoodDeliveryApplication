@@ -136,11 +136,15 @@ export class MessageService {
   }
 
   dishAddedToCart() {
-    this.toastr.success("Dish added to the cart")
+    this.toastr.success("Dish added to the cart", undefined, {
+      timeOut:500
+    })
   }
 
   dishRemovedFromCart() {
-    this.toastr.warning("Dish removed from the cart")
+    this.toastr.warning("Dish removed from the cart", undefined, {
+      timeOut:500
+    })
   }
 
   provideLocationData() {
@@ -149,6 +153,14 @@ export class MessageService {
 
   locationSaved() {
     this.toastr.success("Location saved successfully")
+  }
+
+  orderPlaced() {
+    this.toastr.success("Order placed successfully")
+  }
+
+  orderUnsuccessfull() {
+    this.toastr.error("Unable to place order")
   }
 
 }

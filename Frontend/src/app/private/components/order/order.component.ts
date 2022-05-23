@@ -1,4 +1,6 @@
+import {   HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MessageService } from 'src/app/public/services/message.service';
 import { DataService } from '../../service/data.service';
 
@@ -10,41 +12,59 @@ import { DataService } from '../../service/data.service';
 export class OrderComponent implements OnInit {
 
   locationDetails!: any
+
+  orderId!: number;
   
   parsedObject = JSON.parse('[' + localStorage.getItem("cartItem") + ']');
 
   cart: any= this.parsedObject[0]!=null?this.parsedObject : []
 
-  totalPrice:number=parseInt(localStorage.getItem("totalPrice") || "0");
+  totalPrice: number = parseInt(localStorage.getItem("totalPrice") || "0");
+  
 
-  closeForm(location: any) {
-    console.log(this.cart)
-    this.locationDetails=location
-    const closeButton = document.getElementById("location-form") as HTMLSpanElement;
-
-    if (location != null) {
-      closeButton.style.display = "none"
-      const order = document.getElementById('order-confirm-page') as HTMLDivElement
-      order.style.display="block"
-    } else {
-      this.messageService.provideLocationData()
-    }
+  confirmOrder() {
+    this.dataService.addOrder(
+      this.orderId,
+      this.locationDetails.mobileNumber,
+      this.locationDetails.address,
+      localStorage.getItem('cartItem') || "",
+      this.totalPrice
+    ).subscribe(
+      (res) => {
+          localStorage.removeItem('cartItem');
+          localStorage.removeItem('totalPrice');
+          this.messageService.orderPlaced()
+          this.router.navigate(['private/category'])
+      },
+      (err) => {
+          this.messageService.orderUnsuccessfull()
+          this.router.navigate(['private/menus'])
+      }
+    )
     
   }
 
+  cancel() {
+    if (confirm("Are your sure to cancel the ordering process?")) {
+      localStorage.removeItem('cartItem');
+      localStorage.removeItem('totalPrice');
+      this.router.navigate(['private/menus'])
+    }
+    
+  }
   
 
   constructor(
     private dataService: DataService,
-    private messageService:MessageService
+    private messageService: MessageService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
-    this.dataService.getLocation()
-      .subscribe(
-        (res) => {
-          this.locationDetails = res
-          console.log(this.locationDetails)
+    this.orderId=Math.floor(100000 + Math.random() * 900000);
+    this.dataService.getLocation().subscribe(
+      (res) => {
+        this.locationDetails = res
       }
     )
   }
