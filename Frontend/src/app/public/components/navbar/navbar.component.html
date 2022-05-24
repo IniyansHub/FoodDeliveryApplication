@@ -8,7 +8,7 @@
         <label for="checkbox_toggle" class="hamburger">&#9776;</label>
         
         <div class="menu" *ngIf="!this.authService.isUserLoggedIn()">
-            <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+            <li><a routerLink="/" routerLinkActive="active"   data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">Home</a></li>
             <li><a routerLink="login" routerLinkActive="active">Login</a></li>
             <li><a routerLink="signup" routerLinkActive="active">Signup</a></li>
         </div>

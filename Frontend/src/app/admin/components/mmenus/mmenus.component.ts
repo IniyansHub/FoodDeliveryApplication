@@ -90,8 +90,8 @@ export class MmenusComponent implements OnInit {
 
       dishNameEditor.style.outline = "none"
       dishPriceEditor.style.outline="none"
-      dishNameEditor.style.backgroundColor = "white";
-      dishPriceEditor.style.backgroundColor = "white";
+      dishNameEditor.style.backgroundColor = "#d7dae0";
+      dishPriceEditor.style.backgroundColor = "#d7dae0";
       dishNameEditor.disabled = false;
       dishNameEditor.focus()
       dishPriceEditor.disabled = false;

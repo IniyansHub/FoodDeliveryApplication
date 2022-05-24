@@ -76,7 +76,7 @@ export class MUsersComponent implements OnInit {
     if (emailEditor != null) {
 
       emailEditor.style.outline = "none"
-      emailEditor.style.backgroundColor = "white";
+      emailEditor.style.backgroundColor = "#d7dae0";
 
       emailEditor.disabled = false;
 

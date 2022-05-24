@@ -83,7 +83,7 @@ export class MhotelsComponent implements OnInit {
     if (hotelNameEditor != null) {
 
       hotelNameEditor.style.outline = "none"
-      hotelNameEditor.style.backgroundColor = "white";
+      hotelNameEditor.style.backgroundColor = "#d7dae0";
 
       hotelNameEditor.disabled = false;
 

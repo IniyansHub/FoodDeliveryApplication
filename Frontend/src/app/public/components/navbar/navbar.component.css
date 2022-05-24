@@ -68,17 +68,15 @@ input[type=checkbox] {
     user-select: none;
 }
 
-.active{
-   
-}
 
 @media (max-width: 768px) {
     .menu {
         display: none;
         position: absolute;
-        background-color: black;
+        background-color: rgba(0, 0, 0, 0.466);
         right: 0;
         left: 0;
+        z-index: 1;
         text-align: center;
         padding: 16px 0;
     }

@@ -109,7 +109,55 @@ background-color: rgba(0, 0, 0, 0.664);
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 600px) {
+    .searchbox{        
+        display: flex;
+        align-items: center;
+    }
+    
+    .searchbox input{
+        transform: translateX(0);
+        width: 100%;
+    }
+
+    .hotel-card{
+        display: block;
+        margin: 20px;
+        padding: 10px;
+        background-color: white;
+        border-radius: 8px;
+    
+    }
+
+    .hotel-image-section img{
+        width: 100%;
+        height: 250px;
+    }
+    
+    .title-section{
+        display: flex;
+        margin: 20px 0;
+        font-size: 1.5em;
+        margin-bottom: 0;
+    }
+
+    
+    .rating-section{
+        display: flex;
+        width: 1.5em;
+        padding-bottom: 1em;
+    }
+    
+    .rating-section img{
+        width: 1.5em;
+    }
+    
+    .hotel-description-section{
+       font-size: 1.2em;
+    }
+
+
+}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {}

@@ -10,6 +10,7 @@ import { RestaurantsComponent } from './components/restaurants/restaurants.compo
 import { DishesComponent } from './components/dishes/dishes.component';
 import { OrderComponent } from './components/order/order.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PrivateRoutingModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class PrivateModule { }

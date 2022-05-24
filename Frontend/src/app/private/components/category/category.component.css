@@ -90,7 +90,50 @@
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {}
+@media only screen and (max-width: 600px) {
+    .categories-wrapper{
+        width: fit-content;
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        row-gap: 25px;
+        margin: 10px;
+        background: transparent;
+    }
+
+    .category-card{
+        background-color: white;
+        display: grid;
+        height: 100%;
+        grid-template-rows:50% 8% auto;
+        padding-bottom: 30px;
+    }
+
+    .category-image-section{
+        display:flex;
+        height: 250px;
+        overflow: scroll;
+    }
+
+    .category-image-section img{
+        height: 100%;
+        width: 100%;
+    }
+
+    .category-title{
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        font-size: 2.1em;
+    }
+    
+    .category-description{
+        font-size: 1.5em;
+    }
+
+    .all-category-card{
+        height: 350px;
+    }
+}
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {}
