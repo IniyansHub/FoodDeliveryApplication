@@ -12,7 +12,7 @@
 
 .mobile{
     display: grid;
-    grid-template-columns:50% 50% ;
+    grid-template-columns:50% 50%;
     padding: 2px 0;
 }
 
@@ -90,3 +90,111 @@ border-radius: 5px;
       opacity: 0;
     }
   }
+
+  /* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+@media only screen and (min-width: 1200px) {
+    .order-data{
+        background-color: white;
+        width: 40%;
+        display: grid;
+        grid-template-rows: auto auto auto auto auto auto;
+        padding: 10px;
+        margin: 0 auto;
+        font-size: 1em;
+        border-radius: 10px;
+    }
+    
+    .mobile{
+        display: grid;
+        grid-template-columns:50% 50% ;
+        padding: 2px 0;
+    }
+    
+    .address{
+        display: grid;
+        grid-template-columns:50% 50%;
+        padding: 2px 0;
+    }
+    
+    .dish_header{
+        display: grid;
+        grid-template-columns:50% 50%;
+        font-weight: bold;
+    }
+    
+    .ordered-food-wrapper{
+        width: 100%;
+        height: 100%;
+    }
+    
+    .ordered-food{
+        display: grid;
+        grid-template-columns:50% 50%;
+        padding: 2px 0px;
+    }
+    
+    .total-price-wrapper{
+        display: grid;
+        grid-template-columns:50% 50%;
+        padding: 0 0 10px 0;
+    }
+    
+    .delivery-charge{
+        display: grid;
+        grid-template-columns:50% 50%;
+    }
+    
+    .confirm-order{
+        display: flex;
+        align-items: center;
+        justify-content:space-between;
+    }
+    
+    .confirm-order button{
+    margin-right: 10px;
+    width: 8em;
+    height: 3em;
+    border-radius: 5px;
+    }
+    
+    .confirm{
+        border: none;
+        outline:none;
+        text-align: center;
+        background-color: green;
+        color: white;
+        padding: 10px;
+    }
+    
+    .cancel{
+        border: none;
+        outline:none;
+        text-align: center;
+        background-color: red;
+        color: white;
+        padding: 10px;
+    }
+    
+    .blink_me {
+        animation: blinker 0.2s linear;
+      }
+      
+      @keyframes blinker {
+        50% {
+          opacity: 0;
+        }
+      }
+}

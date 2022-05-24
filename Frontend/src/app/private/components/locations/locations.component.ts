@@ -22,6 +22,11 @@ export class LocationsComponent implements OnInit {
     landmark:new FormControl('',Validators.required)
   });
 
+  closeform(){
+    this.addressForm.enable()
+    this.location=null
+  }
+
   addLocation() {
     this.dataService.addLocation(
       this.addressForm.getRawValue().mobile,
@@ -46,6 +51,7 @@ export class LocationsComponent implements OnInit {
       (res) => {
         this.location = res
         if (location != null) {
+          this.addressForm.disable();
           this.addressForm.patchValue({
             mobile: this.location.mobileNumber,
             address: this.location.address,

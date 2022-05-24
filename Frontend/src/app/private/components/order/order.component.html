@@ -29,17 +29,18 @@
     <div class="ordered-food-wrapper">
         <div *ngFor="let item of cart" class="ordered-food">
             <div>{{item.dishName}}</div>
-            <div>{{item.dishPrice}}</div>
+            <div style="margin-left:8px;">{{item.dishPrice}}</div>
         </div>
-        <div class="delivery-charge">
-            <div style="font-weight: bold;">Delivery Charge</div>
-            <div>+50</div>
-        </div>
-        <hr>
-        <div class="total-price-wrapper">
-            <div style="font-weight: bold;">Total Price</div>
-            <div>{{totalPrice+50}}</div>
-        </div>
+    </div>
+    <hr>
+    <div class="delivery-charge">
+        <div style="font-weight: bold;">Delivery Charge</div>
+        <div>+50</div>
+    </div>
+    <hr>
+    <div class="total-price-wrapper">
+        <div style="font-weight: bold;">Total Price</div>
+        <div>{{totalPrice+50}}</div>
     </div>
     
     <div class="confirm-order">

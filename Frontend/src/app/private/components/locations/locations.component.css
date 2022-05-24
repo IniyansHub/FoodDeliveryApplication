@@ -77,3 +77,96 @@ textarea{
     max-height: 200px;
 }
 
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+@media only screen and (min-width: 1200px) {
+    .form-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+        margin-top:2%;
+    }
+    
+    p{
+        position: absolute;
+        background-color: black;
+        padding: 20px;
+        border-radius: 5px;
+        top:30%;
+    }
+
+    p #close{
+        position: absolute;
+        left:-14px;
+        top:-15px;
+
+    }
+
+    p img{
+        width: 2em;
+        height: 2em;
+    }
+
+    .form{
+        width: 35%;
+        height: 100%;
+        backdrop-filter: blur(10px);
+        background: rgba(0, 0, 0, 0.432);
+        color: rgb(255, 255, 255);
+        display: grid;
+        grid-template-rows: auto auto auto;
+        row-gap:20px;
+        padding: 15px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    
+    .form-field{
+        display: grid;
+        grid-template-rows: auto auto;
+    }
+    
+    
+    .login-button-field{
+        display: flex;
+        justify-content: center;
+    }
+    
+    .login-button-field button  {
+        width:100%;
+        border: none;
+        outline: none;
+        background-color: orange;
+        color: white;
+        border-radius: 3px;
+        margin-top: 20px;
+        padding: 8px;
+    }
+    
+    .form-input{
+        border: none;
+        outline: none;
+        border-bottom:1px solid ;
+        padding-top: 10px;
+    }
+    
+    .form-input:focus{
+        border-bottom: 2px solid orange;
+    }
+    
+    textarea{
+        min-height: 100px;
+        max-height: 200px;
+    }
+}

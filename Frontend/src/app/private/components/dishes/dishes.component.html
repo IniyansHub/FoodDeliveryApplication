@@ -34,8 +34,8 @@
     <div class="order-cart-card-dishes" *ngIf="cart.length!=0">
         <div class="ordered-dishes-wrapper">
             <div class="ordered-dish" *ngFor="let dish of cart; let i = index">
-                <div class="dish-plate-name" style="justify-content:left;">{{dish.dishName}}</div>
-                <div class="dish-plate-price" style="justify-content:right;"> &#8377;{{dish.dishPrice}}</div>
+                <div class="dish-plate-name">{{dish.dishName}}</div>
+                <div class="dish-plate-price"> &#8377;{{dish.dishPrice}}</div>
                 <div class="remove-dish" (click)="removeDish(i)"><img src="../../../../assets/images/remove.png"></div>
             </div>
         </div>

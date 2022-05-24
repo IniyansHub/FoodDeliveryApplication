@@ -2,6 +2,7 @@
     <form class="form" [formGroup]="addressForm">
         <div style="text-align: center;font-weight: bold;">Enter the delivery address</div>
         <p *ngIf="location!=null">
+            <span id="close" (click)="closeform()"><img src="../../../../assets/images/remove2.png"></span>
             <span style="font-weight:bold; color: red;">Note:</span> You have already made an order from the location
             shown in the form.  If this location is ok for your current order then click on save location to continue or 
             enter your new location in the form and click on save location again
