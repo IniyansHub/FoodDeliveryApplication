@@ -91,10 +91,12 @@
 }
 
 .markAsAdmin button{
-    background-color: rgb(235, 212, 11);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(247, 215, 36);
     color: white;
-    padding: 4px;
-    font-weight: 500;
+   
 }
 
 .editUser{
@@ -198,4 +200,54 @@ form button{
 
 .submit-button{
     text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .component-wrapper{
+        display: flex;
+        justify-content: center;
+        width:100vw;
+    }
+
+    .user-content-wrapper{
+        width: 100%;
+        padding-bottom: 20px;
+        height: fit-content;
+        margin-top: 15%;
+    }
+
+    .tab{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 10px;
+        position: absolute;
+        width: 50%;
+    }
+    
+    .searchbox{
+        width: 100%;
+        height: 2.5em;
+        font-size: larger;
+        padding: 3px;
+        outline: none;
+        border: none;
+        padding-left: 10px;
+        z-index:-1;
+
+    }
+
+
+    .email{
+        margin-right:10px;
+    }
+
+    .markAsAdmin button, .editUser button, .deleteUser button, .saveUser button{
+        width: 100%;
+        height: 30px;
+        font-size: 60%;
+        margin-right: 10px;
+    }
+
+
 }

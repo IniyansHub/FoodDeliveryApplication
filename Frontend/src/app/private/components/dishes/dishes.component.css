@@ -317,6 +317,10 @@ color: black;
         display: none;
     }
 
+    .sidebar-left input{
+        display: block;
+    }
+
     .menus-wrapper{
         background-color: white;
         height: 100%;
@@ -336,72 +340,103 @@ color: black;
         border-radius: 5px;
     }
 
+    .order-cart-card{
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        height:100%;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        width: 100%;
+    }   
+    
+    .order-cart-card::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .no-dishes{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1em;
+    text-align: center;
+    color: black;
+    }
+    
+    .order-cart-card-dishes{
+        position: relative;
+        height: 100%;
+        width:100%;
+        padding: 20px;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        background-color: rgba(0, 0, 0, 0.705);
+    }
+    
+    .order-cart-card-dishes::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .ordered-dishes-wrapper{
+        height: 90%;
+        overflow: scroll;
+        overflow-x: hidden;
+        -ms-overflow-style: none; 
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+    }
+    
+    .ordered-dishes-wrapper::-webkit-scrollbar{
+        display: none;
+    }
+    
+    .ordered-dish{
+        display: grid;
+        grid-template-columns: 50% 30% 20%;
+        background-color: white;
+        padding: 5px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: 400;
+        margin-bottom: 5px;
+        border-radius: 5px;
+    }
+
+    .total-pay{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(158, 230, 136);
+        width:9em;
+        height: 50px;
+        color: white;
+        top: 0px;
+        font-size: 1em;
+        letter-spacing: 2px;
+        
+    }
+    
+    .place-order{
+        margin-left: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: orange;
+        width:9em;
+        height: 50px;
+        color: white;
+        top:0;
+        font-size: 1em;
+        letter-spacing: 2px;
+        cursor: pointer;
+        font-weight: normal;
+    } 
 
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
 
-.order-cart-card{
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    height:100%;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    width: 100%;
-}   
 
-.order-cart-card::-webkit-scrollbar {
-    display: none;
-}
-
-.no-dishes{
-font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-font-size: 1em;
-text-align: center;
-color: black;
-}
-
-.order-cart-card-dishes{
-    position: relative;
-    height: 100%;
-    width:100%;
-    padding: 20px;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    background-color: rgba(0, 0, 0, 0.705);
-}
-
-.order-cart-card-dishes::-webkit-scrollbar {
-    display: none;
-}
-
-.ordered-dishes-wrapper{
-    height: 90%;
-    overflow: scroll;
-    overflow-x: hidden;
-    -ms-overflow-style: none; 
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-}
-
-.ordered-dishes-wrapper::-webkit-scrollbar{
-    display: none;
-}
-
-.ordered-dish{
-    display: grid;
-    grid-template-columns: 50% 30% 20%;
-    background-color: white;
-    padding: 5px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: 400;
-    margin-bottom: 5px;
-    border-radius: 5px;
-}
 
 
 }
@@ -481,6 +516,7 @@ color: black;
 }
 
 .order-cart-card{
+    margin-top:0;
     display: flex;
     justify-content: center;
     align-items: center;

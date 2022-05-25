@@ -1,3 +1,4 @@
+import { HtmlParser } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'src/app/public/services/message.service';
@@ -32,7 +33,12 @@ export class DishesComponent implements OnInit {
       localStorage.setItem("totalPrice",""+this.totalPrice)
     }
 
-    this.messageService.dishAddedToCart();
+    this.messageService.dishAddedToCart()
+    const dishes = document.getElementById('goToCart') as HTMLElement
+      dishes.scrollIntoView({
+        behavior:'smooth'
+      })
+     
     
   }
 

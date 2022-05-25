@@ -40,6 +40,10 @@ export class LocationsComponent implements OnInit {
     )
   }
 
+  goBack(){
+    this.router.navigate(['private/menus'])
+  }
+
   constructor(
     private dataService: DataService,
     private messageService: MessageService,

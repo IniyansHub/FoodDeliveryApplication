@@ -19,7 +19,7 @@
             <div class="menu-name">{{menu.dishes}}</div>
             <div class="menu-price"> &#8377;{{menu.price}}</div>
             <div class="add-to-cart" (click)="addFood({dishName:menu.dishes,dishPrice:menu.price})">
-              <a href="#goToCart"><img src="../../../../assets/images/hotel-images/add-menu.png"></a>
+                <img src="../../../../assets/images/hotel-images/add-menu.png">
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    <div class="order-cart-card-dishes"  *ngIf="cart.length!=0" >
+    <div class="order-cart-card-dishes"   *ngIf="cart.length!=0" >
         <div class="ordered-dishes-wrapper">
             <div class="ordered-dish" *ngFor="let dish of cart; let i = index">
                 <div class="dish-plate-name">{{dish.dishName}}</div>
@@ -45,6 +45,9 @@
         <div class="total-pay" (click)="placeOrder()">
             <span style="font-size:0.6em; color:black;font-weight: bold;">Total Cost:&nbsp;&nbsp;</span> &#8377;{{totalPrice}}
         </div>
+    </div>
+    <div id="goToCart" style="height:5px;">
+        
     </div>
 </div>
  
